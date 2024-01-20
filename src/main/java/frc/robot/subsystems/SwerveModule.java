@@ -14,8 +14,10 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class SwerveModule {
+
+public class SwerveModule extends SubsystemBase{
   private static final double kWheelRadius = 0.0508;
   private static final int kEncoderResolution = 4096;
 
@@ -128,5 +130,10 @@ public class SwerveModule {
 
     m_driveMotor.setVoltage(driveOutput + driveFeedforward);
     m_turningMotor.setVoltage(turnOutput + turnFeedforward);
+  }
+
+  public void resetEncoders() {
+    m_driveEncoder.reset();
+    m_turningEncoder.reset();
   }
 }
