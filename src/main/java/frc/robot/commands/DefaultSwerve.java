@@ -89,8 +89,13 @@ public class DefaultSwerve extends Command {
     
     SmartDashboard.putNumber("Heading", headingFunc.getAsDouble());
 
-    ChassisSpeeds chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, turningSpeed, Rotation2d.fromDegrees(swerveSubsystem.getRobotDegrees()));;
-
+    ChassisSpeeds chassisSpeeds;
+    if(fieldOriented.getAsBoolean()) {
+        chassisSpeeds = ChassisSpeeds.fromRobotRelativeSpeeds(xSpeed, ySpeed, turningSpeed, Rotation2d.fromDegrees(swerveSubsystem.getRobotDegrees()));;
+    }
+    else {
+        chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, turningSpeed, Rotation2d.fromDegrees(swerveSubsystem.getRobotDegrees()));;
+    }
     // Create module states using array
     SwerveModuleState[] moduleStates = swerveSubsystem.getKinematics().toSwerveModuleStates(chassisSpeeds);
  
