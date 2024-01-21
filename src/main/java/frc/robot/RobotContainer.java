@@ -6,9 +6,26 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.DeferredCommand;
+import frc.robot.commands.DefaultSwerve;
+import frc.robot.subsystems.SwerveSubsystem;
+import edu.wpi.first.wpilibj.XboxController;
+import java.util.function.DoubleSupplier;
+import java.util.function.BooleanSupplier;
 
 public class RobotContainer {
+  
+  XboxController controller = new XboxController(0); // CHANGE PORT
+  SwerveSubsystem drive = new SwerveSubsystem();
+
   public RobotContainer() {
+    drive.setDefaultCommand(new DefaultSwerve(drive, 
+    () -> controller.getLeftX(), 
+    () -> controller.getLeftY(), 
+    () -> controller.getRightX(), 
+    () -> controller.getAButtonPressed(),
+    () -> drive.getHeading()));
+
     configureBindings();
   }
 

@@ -5,10 +5,27 @@ import edu.wpi.first.math.geometry.Translation2d;
 public class Constants {
     //NWU, m/s, radians
     public class DriveConstants {
+        //goofy numbers with no experimental basis
         public static double maxSpeed = 3;
+        public static double maxAngularSpeed = 2;
+
+        public static double teleOpMaxAccel = 7;
+        public static double teleOpMaxAngularAccel = 3;
+
+        public static double angleP = 0;
+        public static double angleI = 0;
+        public static double angleD = 0;
     }
 
     public class SwerveConstants {
+;
+        //DON'T KNOW THESE
+        public static double turningP = 0;
+        public static double turningI = 0;
+        public static double turningD = 0;
+        public static double driveP = 0;
+        public static double driveI = 0;
+        public static double driveD = 0;
 
         public static double trackWidth = 0.5588;
         public static double wheelBase = 0.4826;

@@ -71,7 +71,6 @@ public class SwerveSubsystem extends SubsystemBase {
   // Swerve subsystem constructor
   public SwerveSubsystem() {
 
-    // Reset robot encoders on startup
     resetAllEncoders();
 
     // Zero navX heading on new thread when robot starts
@@ -87,8 +86,16 @@ public class SwerveSubsystem extends SubsystemBase {
     // Set robot odometry object to current robot heading and swerve module positions
     odometer = new SwerveDriveOdometry(driveKinematics, 
     getOdometryAngle(), getModulePositions());
-    // new Rotation2d(gyro.getYaw() * -1 / 180 * Math.PI), getModulePositions()
+  }
 
+  //Make gyro not-stupid
+  public double getRobotDegrees(){
+    double fromGyro = gyro.getAngle() % 360.0;
+    if(fromGyro < 0.0){
+      return fromGyro + 360.0;
+    }else{
+      return fromGyro;
+    }
   }
 
   // Reset gyro heading 
@@ -105,19 +112,9 @@ public class SwerveSubsystem extends SubsystemBase {
     gyro.calibrate();
   }*/
 
-  // Return gyro heading, make sure to read navx docs on this
+  // Get gyro heading
   public double getHeading(){
     return gyro.getAngle();
-  }
-
-  // Return the robot odometry in pose meters
-  public Pose2d getOdometryMeters(){
-    return(odometer.getPoseMeters());
-  }
-
-  // Return heading in Rotation2d format
-  public Rotation2d getRotation2d(){
-    return Rotation2d.fromDegrees(getHeading());
   }
 
   // Move the swerve modules to the desired SwerveModuleState
@@ -132,7 +129,7 @@ public class SwerveSubsystem extends SubsystemBase {
     backRight.setDesiredState(desiredStates[3]);
 }
 
-  // Return robot position caculated by odometer
+  // Return robot position
   public Pose2d getPose(){
     return odometer.getPoseMeters();
   }
@@ -158,5 +155,9 @@ public class SwerveSubsystem extends SubsystemBase {
       frontRight.resetEncoders();
       backLeft.resetEncoders();
       backRight.resetEncoders();
+  }
+
+  public SwerveDriveKinematics getKinematics() {
+    return driveKinematics;
   }
 }
