@@ -91,7 +91,7 @@ public class DefaultSwerve extends Command {
 
     ChassisSpeeds chassisSpeeds;
     if(fieldOriented.getAsBoolean()) {
-        chassisSpeeds = ChassisSpeeds.fromRobotRelativeSpeeds(xSpeed, ySpeed, turningSpeed, Rotation2d.fromDegrees(swerveSubsystem.getRobotDegrees()));;
+        chassisSpeeds = new ChassisSpeeds(xSpeed, ySpeed, turningSpeed);
     }
     else {
         chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, turningSpeed, Rotation2d.fromDegrees(swerveSubsystem.getRobotDegrees()));;
