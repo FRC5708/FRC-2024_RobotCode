@@ -4,6 +4,9 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkLowLevel.MotorType;
+
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
@@ -13,13 +16,12 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.SwerveConstants;
 
 
 public class SwerveModule extends SubsystemBase{
-  private static final double kWheelRadius = 0.0508;
+  private static final double wheelRadius = SwerveConstants.wheelRadius;
   private static final int kEncoderResolution = 4096;
 
   private static final double kModuleMaxAngularVelocity = 15; //Drivetrain.kMaxAngularSpeed;
@@ -32,10 +34,8 @@ public class SwerveModule extends SubsystemBase{
   private final Encoder m_driveEncoder;
   private final Encoder m_turningEncoder;
 
-  // Gains are for example purposes only - must be determined for your own robot!
   private final PIDController m_drivePIDController = new PIDController(SwerveConstants.driveP, SwerveConstants.driveI, SwerveConstants.driveD);
 
-  // Gains are for example purposes only - must be determined for your own robot!
   private final ProfiledPIDController m_turningPIDController =
       new ProfiledPIDController(
           SwerveConstants.turningP,
@@ -44,7 +44,6 @@ public class SwerveModule extends SubsystemBase{
           new TrapezoidProfile.Constraints(
               kModuleMaxAngularVelocity, kModuleMaxAngularAcceleration));
 
-  // Gains are for example purposes only - must be determined for your own robot!
   private final SimpleMotorFeedforward m_driveFeedforward = new SimpleMotorFeedforward(1, 3);
   private final SimpleMotorFeedforward m_turnFeedforward = new SimpleMotorFeedforward(1, 0.5);
 
@@ -65,8 +64,8 @@ public class SwerveModule extends SubsystemBase{
       int driveEncoderChannelB,
       int turningEncoderChannelA,
       int turningEncoderChannelB) {
-    m_driveMotor = new PWMSparkMax(driveMotorChannel);
-    m_turningMotor = new PWMSparkMax(turningMotorChannel);
+    m_driveMotor = new CANSparkMax(driveMotorChannel, MotorType.kBrushless);
+    m_turningMotor = new CANSparkMax(turningMotorChannel, MotorType.kBrushless);
 
     m_driveEncoder = new Encoder(driveEncoderChannelA, driveEncoderChannelB);
     m_turningEncoder = new Encoder(turningEncoderChannelA, turningEncoderChannelB);
@@ -74,7 +73,7 @@ public class SwerveModule extends SubsystemBase{
     // Set the distance per pulse for the drive encoder. We can simply use the
     // distance traveled for one rotation of the wheel divided by the encoder
     // resolution.
-    m_driveEncoder.setDistancePerPulse(2 * Math.PI * kWheelRadius / kEncoderResolution);
+    m_driveEncoder.setDistancePerPulse(2 * Math.PI * wheelRadius / kEncoderResolution);
 
     // Set the distance (in this case, angle) in radians per pulse for the turning encoder.
     // This is the the angle through an entire rotation (2 * pi) divided by the
