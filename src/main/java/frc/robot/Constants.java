@@ -34,6 +34,8 @@ public class Constants {
 
         public static double trackWidth = 0.5588;
         public static double wheelBase = 0.4826;
+
+        
         //goof
         public static double wheelRadius = 0.05;
 
@@ -44,30 +46,14 @@ public class Constants {
 
         public static int frontLeftDriveMotor = 0;
         public static int frontLeftTurningMotor = 0;
-        public static int frontLeftDriveEncoderA = 0;
-        public static int frontLeftDriveEncoderB = 0;
-        public static int frontLeftTurningEncoderA = 0;
-        public static int frontLeftTurningEncoderB = 0;
 
         public static int frontRightDriveMotor = 0;
         public static int frontRightTurningMotor = 0;
-        public static int frontRightDriveEncoderA = 0;
-        public static int frontRightDriveEncoderB = 0;
-        public static int frontRightTurningEncoderA = 0;
-        public static int frontRightTurningEncoderB = 0;
 
         public static int backRightDriveMotor = 0;
         public static int backRightTurningMotor = 0;
-        public static int backRightDriveEncoderA = 0;
-        public static int backRightDriveEncoderB = 0;
-        public static int backRightTurningEncoderA = 0;
-        public static int backRightTurningEncoderB = 0;
 
         public static int backLeftDriveMotor = 0;
         public static int backLeftTurningMotor = 0;
-        public static int backLeftDriveEncoderA = 0;
-        public static int backLeftDriveEncoderB = 0;
-        public static int backLeftTurningEncoderA = 0;
-        public static int backLeftTurningEncoderB = 0;
     }
 }

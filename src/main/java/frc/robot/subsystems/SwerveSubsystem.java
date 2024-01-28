@@ -23,35 +23,26 @@ public class SwerveSubsystem extends SubsystemBase {
     private final SwerveModule frontLeft = new SwerveModule(
             SwerveConstants.frontLeftDriveMotor,
             SwerveConstants.frontLeftTurningMotor,
-            SwerveConstants.frontLeftDriveEncoderA,
-            SwerveConstants.frontLeftDriveEncoderB,
-            SwerveConstants.frontLeftTurningEncoderA,
-            SwerveConstants.frontLeftTurningEncoderB
-            );
+            SwerveConstants.frontLeftAbsoluteEncoder,
+            SwerveConstants.frontLeftAbsoluteEncoderOffset);
 
     private final SwerveModule frontRight = new SwerveModule(
             SwerveConstants.frontRightDriveMotor,
             SwerveConstants.frontRightTurningMotor,
-            SwerveConstants.frontLeftDriveEncoderA,
-            SwerveConstants.frontLeftDriveEncoderB,
-            SwerveConstants.frontLeftTurningEncoderA,
-            SwerveConstants.frontLeftTurningEncoderB);
+            SwerveConstants.frontRightAbsoluteEncoder,
+            SwerveConstants.frontRightAbsoluteEncoderOffset);
 
     private final SwerveModule backLeft = new SwerveModule(
             SwerveConstants.backLeftDriveMotor,
             SwerveConstants.backLeftTurningMotor,
-            SwerveConstants.backLeftDriveEncoderA,
-            SwerveConstants.backLeftDriveEncoderB,
-            SwerveConstants.backLeftTurningEncoderA,
-            SwerveConstants.backRightTurningEncoderB);
+            SwerveConstants.backLeftAbsoluteEncoder,
+            SwerveConstants.backLeftAbsoluteEncoderOffset);
 
     private final SwerveModule backRight = new SwerveModule(
             SwerveConstants.backRightDriveMotor,
             SwerveConstants.backRightTurningMotor,
-            SwerveConstants.backRightDriveEncoderA,
-            SwerveConstants.backRightDriveEncoderB,
-            SwerveConstants.backRightTurningEncoderA,
-            SwerveConstants.backRightTurningEncoderB); 
+            SwerveConstants.backRightAbsoluteEncoder,
+            SwerveConstants.backRightAbsoluteEncoderOffset); 
 
   // Create the navX using roboRIO expansion port
   private AHRS gyro = new AHRS(SPI.Port.kMXP);
