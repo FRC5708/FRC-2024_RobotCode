@@ -50,16 +50,16 @@ public class Constants {
         public static int frontRightDriveMotor = 4;
         public static int frontRightTurningMotor = 3;
 
-        public static int backRightDriveMotor = 6;
-        public static int backRightTurningMotor = 5;
-
         public static int backLeftDriveMotor = 8;
         public static int backLeftTurningMotor = 7;
 
-        public static int backLeftAbsoluteEncoder = 53;
-        public static int backRightAbsoluteEncoder = 50;
-        public static int frontLeftAbsoluteEncoder = 51;
-        public static int frontRightAbsoluteEncoder = 52;
+        public static int backRightDriveMotor = 6;
+        public static int backRightTurningMotor = 5;
+        
+        public static int frontLeftAbsoluteEncoder = 50;
+        public static int frontRightAbsoluteEncoder = 51;
+        public static int backLeftAbsoluteEncoder = 52;
+        public static int backRightAbsoluteEncoder = 53;
 
         public static int backLeftAbsoluteEncoderOffset = 0;
         public static int backRightAbsoluteEncoderOffset = 0;

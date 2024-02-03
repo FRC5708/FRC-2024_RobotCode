@@ -9,23 +9,30 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.DeferredCommand;
 import frc.robot.commands.DefaultSwerve;
 import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.subsystems.TestSubsystem;
 import edu.wpi.first.wpilibj.XboxController;
 import java.util.function.DoubleSupplier;
 import java.util.function.BooleanSupplier;
 
 public class RobotContainer {
-  
+  boolean setupSwerve = false;
   XboxController controller = new XboxController(0); // CHANGE PORT
-  SwerveSubsystem drive = new SwerveSubsystem();
+  SwerveSubsystem drive;
+  TestSubsystem test;
 
   public RobotContainer() {
-    drive.setDefaultCommand(new DefaultSwerve(drive, 
-    () -> controller.getLeftX(), 
-    () -> controller.getLeftY(), 
-    () -> controller.getRightX(), 
-    () -> controller.getAButtonPressed(),
-    () -> drive.getHeading()));
-
+    if (setupSwerve) {
+      drive = new SwerveSubsystem();
+      drive.setDefaultCommand(new DefaultSwerve(drive, 
+      () -> controller.getLeftX(), 
+      () -> controller.getLeftY(), 
+      () -> controller.getRightX(), 
+      () -> controller.getAButtonPressed(),
+      () -> drive.getHeading()));
+    }
+    else {
+      test = new TestSubsystem();
+    }
     configureBindings();
   }
 

@@ -16,7 +16,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
-import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -25,6 +24,7 @@ import frc.robot.Constants;
 import frc.robot.Constants.DriveConstants;
 
 import com.revrobotics.CANSparkLowLevel;
+import com.ctre.phoenix6.hardware.CANcoder;
 
 
 public class SwerveModule extends SubsystemBase{
@@ -40,7 +40,7 @@ public class SwerveModule extends SubsystemBase{
   private final RelativeEncoder m_driveEncoder;
   private final RelativeEncoder m_turningEncoder;
 
-  private final DutyCycleEncoder m_absoluteEncoder;
+  private final CANcoder m_absoluteEncoder;
 
   private final double m_absoluteEncoderOffset;
 
@@ -63,20 +63,18 @@ public class SwerveModule extends SubsystemBase{
    * @param driveMotorChannel PWM output for the drive motor.
    * @param turningMotorChannel PWM output for the turning motor.
    * @param absoluteEncoderID what's it look like.
-   * @param absoluteEncoderOffset your mother.
+   * @param absoluteEncoderOffset 
    */
   public SwerveModule(
       int driveMotorChannel,
       int turningMotorChannel,
       int absoluteEncoderID,
-      int absoluteEncoderOffset) {
+      double absoluteEncoderOffset) {
     m_driveMotor = new CANSparkMax(driveMotorChannel, CANSparkLowLevel.MotorType.kBrushless);
     m_turningMotor = new CANSparkMax(turningMotorChannel, CANSparkLowLevel.MotorType.kBrushless);
 
     m_absoluteEncoderOffset = absoluteEncoderOffset;
-    m_absoluteEncoder = new DutyCycleEncoder(absoluteEncoderID);
-    m_absoluteEncoder.setDutyCycleRange(1.0/4096, 4095.0/4096);
-
+    m_absoluteEncoder = new CANcoder(absoluteEncoderID);
 
     m_driveEncoder = m_driveMotor.getEncoder();
     m_turningEncoder = m_turningMotor.getEncoder();
@@ -145,7 +143,7 @@ public class SwerveModule extends SubsystemBase{
   public double getAbsoluteEncoderRad() {
     double angle;
 
-    angle = 1 - m_absoluteEncoder.getAbsolutePosition();
+    angle = 1 - m_absoluteEncoder.getAbsolutePosition().getValue();
 
     // Convert into radians
     angle *= 2.0 * Math.PI;
