@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.DeferredCommand;
 import frc.robot.commands.DefaultSwerve;
 import frc.robot.subsystems.SwerveSubsystem;
 import frc.robot.subsystems.TestSubsystem;
+import frc.robot.commands.TestDrive;
 import edu.wpi.first.wpilibj.XboxController;
 import java.util.function.DoubleSupplier;
 import java.util.function.BooleanSupplier;
@@ -23,12 +24,15 @@ public class RobotContainer {
   public RobotContainer() {
     if (setupSwerve) {
       drive = new SwerveSubsystem();
-      drive.setDefaultCommand(new DefaultSwerve(drive, 
+      /*drive.setDefaultCommand(new DefaultSwerve(drive, 
       () -> controller.getLeftX(), 
       () -> controller.getLeftY(), 
       () -> controller.getRightX(), 
       () -> controller.getAButtonPressed(),
-      () -> drive.getHeading()));
+      () -> drive.getHeading()));*/
+      drive.setDefaultCommand(new TestDrive(drive, () -> controller.getLeftX(), 
+      () -> controller.getLeftY(), 
+      () -> controller.getRightX()));
     }
     else {
       test = new TestSubsystem();

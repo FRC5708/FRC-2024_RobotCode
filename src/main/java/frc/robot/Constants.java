@@ -17,7 +17,7 @@ public class Constants {
         public static double teleOpMaxAccel = 7;
         public static double teleOpMaxAngularAccel = 3;
 
-        public static double angleP = 0;
+        public static double angleP = 0.5;
         public static double angleI = 0;
         public static double angleD = 0;
     }

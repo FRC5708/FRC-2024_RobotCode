@@ -8,6 +8,7 @@ import com.ctre.phoenix6.hardware.CANcoder;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.SwerveConstants;
+import edu.wpi.first.wpilibj.CAN;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TestSubsystem extends SubsystemBase {
@@ -40,6 +41,8 @@ public class TestSubsystem extends SubsystemBase {
     private final RelativeEncoder m_backRightDriveEncoder;
     private final RelativeEncoder m_backRightTurningEncoder;
 
+    private CANSparkMax[] motors;
+
 
   public TestSubsystem() {
     m_frontLeftDriveMotor = new CANSparkMax(SwerveConstants.frontLeftDriveMotor, CANSparkLowLevel.MotorType.kBrushless);
@@ -70,7 +73,21 @@ public class TestSubsystem extends SubsystemBase {
     m_backRightAbsoluteEncoder = goof3.getAbsolutePosition();
     m_backLeftAbsoluteEncoder = goof4.getAbsolutePosition();
 
-  }
+    motors = new CANSparkMax[]{
+      m_frontLeftDriveMotor,
+      m_frontLeftTurningMotor,
+      m_frontRightDriveMotor,
+      m_frontRightTurningMotor,
+      m_backLeftDriveMotor,
+      m_backLeftTurningMotor,
+      m_backRightDriveMotor,
+      m_backRightTurningMotor
+    };
+  
+    SmartDashboard.putNumber("Motor", 0);
+    SmartDashboard.putNumber("Speed",0);
+}
+
 
   public void report() {
     m_backLeftAbsoluteEncoder.refresh();
@@ -91,4 +108,22 @@ public class TestSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Front Right Absolute Encoder: ", m_frontRightAbsoluteEncoder.getValue());
   }
 
+  public void oneMotor() {
+    int motor = (int)SmartDashboard.getNumber("Motor", 0);
+    double speed = SmartDashboard.getNumber("Speed",0);
+    for(int i = 0; i < motors.length; i++) {
+      if(i == motor) {
+        motors[i].set(speed);
+      }
+      else {
+        motors[i].set(0);
+      }
+    }
+  }
+
+  public void allMotors() {
+    for(int i = 0; i < motors.length; i++) {
+        motors[i].set(0.1);
+  }
+}
 }
