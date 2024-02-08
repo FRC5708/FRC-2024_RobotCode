@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.SPI;
 
 public class SwerveSubsystem extends SubsystemBase {
 
-    private final SwerveDriveKinematics driveKinematics = new SwerveDriveKinematics(SwerveConstants.frontLeftPosition,
+  public static SwerveDriveKinematics driveKinematics = new SwerveDriveKinematics(SwerveConstants.frontLeftPosition,
                                                                                 SwerveConstants.frontRightPosition,
                                                                                 SwerveConstants.backLeftPosition,
                                                                                 SwerveConstants.backRightPosition);
