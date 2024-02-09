@@ -1,6 +1,6 @@
 package frc.robot.commands;
 
-import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.Constants.DriveConstants;
 //import frc.robot.util.Constants.IOConstants;
 import java.util.function.DoubleSupplier;
@@ -17,11 +17,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class TestDrive extends Command {
 
   // Create variables
-  private final SwerveSubsystem swerveSubsystem;
+  private final DriveSubsystem swerveSubsystem;
   private final DoubleSupplier xSpeedFunc, ySpeedFunc, turningSpeedFunc;
 
   // Command constructor
-  public TestDrive(SwerveSubsystem swerveSubsystem,
+  public TestDrive(DriveSubsystem swerveSubsystem,
   DoubleSupplier xSpeedFunc, DoubleSupplier ySpeedFunc, DoubleSupplier turningSpeedFunc) {
     // Assign values passed from constructor
     this.swerveSubsystem = swerveSubsystem;

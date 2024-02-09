@@ -23,7 +23,6 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.SwerveConstants;
 import frc.robot.utils.SwerveUtils;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import frc.robot.subsystems.MAXSwerveModule;
 
 public class DriveSubsystem extends SubsystemBase {
@@ -252,4 +251,12 @@ private final MAXSwerveModule m_frontLeft = new MAXSwerveModule(
     return m_gyro.getRate() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
 
+  public double getRobotDegrees() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getRobotDegrees'");
+  }
+
+public SwerveDriveKinematics getKinematics() {
+ return SwerveConstants.kDriveKinematics;
+}
 }

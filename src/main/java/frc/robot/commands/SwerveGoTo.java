@@ -1,5 +1,5 @@
 package frc.robot.commands;
-import frc.robot.subsystems.SwerveSubsystem;
+import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.Constants.DriveConstants;
 import java.util.function.DoubleSupplier;
 import edu.wpi.first.math.controller.PIDController;
@@ -13,7 +13,7 @@ public class SwerveGoTo extends Command {
 
   
   private boolean finished;
-  SwerveSubsystem swerveSubsystem;
+  DriveSubsystem driveSubsystem;
 
   private PIDController vXController, vYController;
   private PIDController thetaController;
@@ -33,17 +33,17 @@ public class SwerveGoTo extends Command {
   private Pose2d resetPose;
 
   // Command constructor
-  public SwerveGoTo(SwerveSubsystem swerveSubsystem, double xSetpoint, double ySetpoint, 
+  public SwerveGoTo(DriveSubsystem driveSubsystem, double xSetpoint, double ySetpoint, 
   double tSetpoint, boolean reset, Pose2d resetPose){
 
   this.reset = reset;
   this.resetPose = resetPose;
 
-    addRequirements(swerveSubsystem);
+    addRequirements(driveSubsystem);
 
     tolerance = 0.05;
 
-    this.swerveSubsystem = swerveSubsystem;
+    this.driveSubsystem = driveSubsystem;
 
     this.tSetpoint = tSetpoint;
     this.xSetpoint = xSetpoint * 2;
@@ -63,23 +63,23 @@ public class SwerveGoTo extends Command {
   @Override
   public void initialize() {
     if(reset){
-      swerveSubsystem.resetOdometry(resetPose);
+      driveSubsystem.resetOdometry(resetPose);
     }
 
     finished = false;
 
-    startingPose = swerveSubsystem.getPose();
+    startingPose = driveSubsystem.getPose();
 
   }
 
   @Override
   public void execute(){
 
-    if(swerveSubsystem.getPose().getY()  > (ySetpoint/2) - tolerance){
-      if(swerveSubsystem.getPose().getY()  < (ySetpoint/2) + tolerance){
+    if(driveSubsystem.getPose().getY()  > (ySetpoint/2) - tolerance){
+      if(driveSubsystem.getPose().getY()  < (ySetpoint/2) + tolerance){
 
-        if(swerveSubsystem.getPose().getX()  > (xSetpoint/2) - tolerance){
-          if(swerveSubsystem.getPose().getX()  < (xSetpoint/2) + tolerance){
+        if(driveSubsystem.getPose().getX()  > (xSetpoint/2) - tolerance){
+          if(driveSubsystem.getPose().getX()  < (xSetpoint/2) + tolerance){
             finished = true;
           }
         }
@@ -87,12 +87,12 @@ public class SwerveGoTo extends Command {
       }
     }
 
-      vT = -thetaController.calculate(swerveSubsystem.getRobotDegrees(), tSetpoint);
+      vT = -thetaController.calculate(driveSubsystem.getRobotDegrees(), tSetpoint);
 
       vT = Math.abs(vT) > 0.05 ? vT : 0.0;
 
-      double xError = ( swerveSubsystem.getPose().getX() + (swerveSubsystem.getPose().getX() - startingPose.getX()));
-      double yError = ( swerveSubsystem.getPose().getY() + (swerveSubsystem.getPose().getY() - startingPose.getY()));
+      double xError = ( driveSubsystem.getPose().getX() + (driveSubsystem.getPose().getX() - startingPose.getX()));
+      double yError = ( driveSubsystem.getPose().getY() + (driveSubsystem.getPose().getY() - startingPose.getY()));
        
       vX = vXController.calculate(xError, xSetpoint); // X-Axis PID
       vY = vYController.calculate(yError, ySetpoint); // Y-Axis PID
@@ -101,21 +101,21 @@ public class SwerveGoTo extends Command {
       ChassisSpeeds chassisSpeeds;
   
       // Apply chassis speeds with desired velocities
-      chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(vX, vY, vT, new Rotation2d(swerveSubsystem.getHeading()*Math.PI/180));
+      chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(vX, vY, vT, new Rotation2d(driveSubsystem.getHeading()*Math.PI/180));
 
       // Create states array
-      SwerveModuleState[] moduleStates = swerveSubsystem.getKinematics().toSwerveModuleStates(chassisSpeeds);
+      SwerveModuleState[] moduleStates = driveSubsystem.getKinematics().toSwerveModuleStates(chassisSpeeds);
     
       // Move swerve modules
-      swerveSubsystem.setModuleStates(moduleStates);
+      driveSubsystem.setModuleStates(moduleStates);
 
   }
 
   // Stop all module motor movement when command ends
   @Override
   public void end(boolean interrupted){
-    swerveSubsystem.setModuleStates(
-        swerveSubsystem.getKinematics().toSwerveModuleStates(
+    driveSubsystem.setModuleStates(
+        driveSubsystem.getKinematics().toSwerveModuleStates(
             ChassisSpeeds.fromFieldRelativeSpeeds(
                 0,0,0,new Rotation2d())
         )
