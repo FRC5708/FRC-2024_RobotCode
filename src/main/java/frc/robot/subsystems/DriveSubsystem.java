@@ -32,21 +32,25 @@ public class DriveSubsystem extends SubsystemBase {
 
 private final MAXSwerveModule m_frontLeft = new MAXSwerveModule(
             SwerveConstants.frontLeftDriveMotor,
+            SwerveConstants.frontLeftTurningMotor,
             SwerveConstants.frontLeftAbsoluteEncoder,
             SwerveConstants.frontLeftAbsoluteEncoderOffset);
 
     private final MAXSwerveModule m_frontRight = new MAXSwerveModule(
             SwerveConstants.frontRightDriveMotor,
+            SwerveConstants.frontRightTurningMotor,
             SwerveConstants.frontRightAbsoluteEncoder,
             SwerveConstants.frontRightAbsoluteEncoderOffset);
 
     private final MAXSwerveModule m_backLeft = new MAXSwerveModule(
             SwerveConstants.backLeftDriveMotor,
+            SwerveConstants.backLeftTurningMotor,
             SwerveConstants.backLeftAbsoluteEncoder,
             SwerveConstants.backLeftAbsoluteEncoderOffset);
 
     private final MAXSwerveModule m_backRight = new MAXSwerveModule(
             SwerveConstants.backRightDriveMotor,
+            SwerveConstants.backRightTurningMotor,
             SwerveConstants.backRightAbsoluteEncoder,
             SwerveConstants.backRightAbsoluteEncoderOffset); 
 
@@ -258,5 +262,26 @@ private final MAXSwerveModule m_frontLeft = new MAXSwerveModule(
 
 public SwerveDriveKinematics getKinematics() {
  return SwerveConstants.kDriveKinematics;
+}
+
+public void report() 
+{
+  m_frontLeft.m_absoluteEncoderSignal.refresh();
+  m_frontLeft.m_absoluteEncoderSignal.refresh();
+  m_backLeft.m_absoluteEncoderSignal.refresh();
+  m_backRight.m_absoluteEncoderSignal.refresh();
+  m_frontRight.m_absoluteEncoderSignal.refresh();
+  SmartDashboard.putNumber("FL D: ", m_frontLeft.m_drivingEncoder.getPosition());
+  SmartDashboard.putNumber("FL T: ", m_frontLeft.m_turningEncoder.getPosition());
+  SmartDashboard.putNumber("FL A: ", m_frontLeft.m_absoluteEncoderSignal.getValue());
+  SmartDashboard.putNumber("BL D: ", m_backLeft.m_drivingEncoder.getPosition());
+  SmartDashboard.putNumber("BL T: ", m_backLeft.m_turningEncoder.getPosition());
+  SmartDashboard.putNumber("BL A: ", m_backLeft.m_absoluteEncoderSignal.getValue());
+  SmartDashboard.putNumber("BR D: ", m_backRight.m_drivingEncoder.getPosition());
+  SmartDashboard.putNumber("BR T: ", m_backRight.m_turningEncoder.getPosition());
+  SmartDashboard.putNumber("BR A: ", m_backRight.m_absoluteEncoderSignal.getValue());
+  SmartDashboard.putNumber("FR D: ", m_frontRight.m_drivingEncoder.getPosition());
+  SmartDashboard.putNumber("FR T: ", m_frontRight.m_turningEncoder.getPosition());
+  SmartDashboard.putNumber("FR A: ", m_frontRight.m_absoluteEncoderSignal.getValue());
 }
 }
