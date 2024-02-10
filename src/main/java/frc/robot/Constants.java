@@ -27,7 +27,7 @@ public class Constants {
 
     public class SwerveConstants {
 ;
-        //DON'T KNOW THESE
+        //TUNE THE WRONG THINGS
         public static double turningP = 1;
         public static double turningI = 0;
         public static double turningD = 0;
@@ -41,6 +41,7 @@ public class Constants {
         public static double wheelRadius = 0.0508;
         public static double driveGearRatio = 1/6.75;
         public static double turningGearRatio = 7.0/150.0;
+        public static boolean kTurningEncoderInverted = true;
 
         public static Translation2d frontLeftPosition = new Translation2d(trackWidth/2,wheelBase/2);
         public static Translation2d frontRightPosition = new Translation2d(-trackWidth/2,wheelBase/2);

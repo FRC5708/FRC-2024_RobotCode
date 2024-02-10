@@ -198,6 +198,15 @@ private final MAXSwerveModule m_frontLeft = new MAXSwerveModule(
     m_frontRight.setDesiredState(swerveModuleStates[1]);
     m_backLeft.setDesiredState(swerveModuleStates[2]);
     m_backRight.setDesiredState(swerveModuleStates[3]);
+    report();
+    SmartDashboard.putNumber("FL v: ",swerveModuleStates[0].speedMetersPerSecond);
+    SmartDashboard.putNumber("FL r: ", swerveModuleStates[0].angle.getDegrees());
+    SmartDashboard.putNumber("FR v: ",swerveModuleStates[1].speedMetersPerSecond);
+    SmartDashboard.putNumber("FR r: ", swerveModuleStates[1].angle.getDegrees());
+    SmartDashboard.putNumber("BL v: ",swerveModuleStates[2].speedMetersPerSecond);
+    SmartDashboard.putNumber("BL r: ", swerveModuleStates[2].angle.getDegrees());
+    SmartDashboard.putNumber("BR v: ",swerveModuleStates[3].speedMetersPerSecond);
+    SmartDashboard.putNumber("BR r: ", swerveModuleStates[3].angle.getDegrees());
   }
 
   /**
@@ -266,7 +275,6 @@ public SwerveDriveKinematics getKinematics() {
 
 public void report() 
 {
-  m_frontLeft.m_absoluteEncoderSignal.refresh();
   m_frontLeft.m_absoluteEncoderSignal.refresh();
   m_backLeft.m_absoluteEncoderSignal.refresh();
   m_backRight.m_absoluteEncoderSignal.refresh();
