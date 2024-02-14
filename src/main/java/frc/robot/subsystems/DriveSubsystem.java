@@ -23,32 +23,30 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.SwerveConstants;
 import frc.robot.utils.SwerveUtils;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.subsystems.MAXSwerveModule;
+import frc.robot.subsystems.SwerveModule;
 
 public class DriveSubsystem extends SubsystemBase {
-  // Create MAXSwerveModules
+  // Create SwerveModules
 
-
-
-private final MAXSwerveModule m_frontLeft = new MAXSwerveModule(
+private final SwerveModule m_frontLeft = new SwerveModule(
             SwerveConstants.frontLeftDriveMotor,
             SwerveConstants.frontLeftTurningMotor,
             SwerveConstants.frontLeftAbsoluteEncoder,
             SwerveConstants.frontLeftAbsoluteEncoderOffset);
 
-    private final MAXSwerveModule m_frontRight = new MAXSwerveModule(
+    private final SwerveModule m_frontRight = new SwerveModule(
             SwerveConstants.frontRightDriveMotor,
             SwerveConstants.frontRightTurningMotor,
             SwerveConstants.frontRightAbsoluteEncoder,
             SwerveConstants.frontRightAbsoluteEncoderOffset);
 
-    private final MAXSwerveModule m_backLeft = new MAXSwerveModule(
+    private final SwerveModule m_backLeft = new SwerveModule(
             SwerveConstants.backLeftDriveMotor,
             SwerveConstants.backLeftTurningMotor,
             SwerveConstants.backLeftAbsoluteEncoder,
             SwerveConstants.backLeftAbsoluteEncoderOffset);
 
-    private final MAXSwerveModule m_backRight = new MAXSwerveModule(
+    private final SwerveModule m_backRight = new SwerveModule(
             SwerveConstants.backRightDriveMotor,
             SwerveConstants.backRightTurningMotor,
             SwerveConstants.backRightAbsoluteEncoder,
@@ -83,9 +81,11 @@ private final MAXSwerveModule m_frontLeft = new MAXSwerveModule(
 
   @Override
   public void periodic() {
+    double robot_angle = m_gyro.getAngle();
+    SmartDashboard.putNumber("NavX: ", robot_angle);
     // Update the odometry in the periodic block
     m_odometry.update(
-        Rotation2d.fromDegrees(m_gyro.getAngle()),
+        Rotation2d.fromDegrees(robot_angle),
         new SwerveModulePosition[] {
             m_frontLeft.getPosition(),
             m_frontRight.getPosition(),
@@ -275,21 +275,13 @@ public SwerveDriveKinematics getKinematics() {
 
 public void report() 
 {
-  m_frontLeft.m_absoluteEncoderSignal.refresh();
-  m_backLeft.m_absoluteEncoderSignal.refresh();
-  m_backRight.m_absoluteEncoderSignal.refresh();
-  m_frontRight.m_absoluteEncoderSignal.refresh();
   SmartDashboard.putNumber("FL D: ", m_frontLeft.m_drivingEncoder.getPosition());
-  SmartDashboard.putNumber("FL T: ", m_frontLeft.m_turningEncoder.getPosition());
-  SmartDashboard.putNumber("FL A: ", m_frontLeft.m_absoluteEncoderSignal.getValue());
+  SmartDashboard.putNumber("FL T: ", m_frontLeft.getTurningEncoderPositionDeg());
   SmartDashboard.putNumber("BL D: ", m_backLeft.m_drivingEncoder.getPosition());
-  SmartDashboard.putNumber("BL T: ", m_backLeft.m_turningEncoder.getPosition());
-  SmartDashboard.putNumber("BL A: ", m_backLeft.m_absoluteEncoderSignal.getValue());
+  SmartDashboard.putNumber("BL T: ", m_backLeft.getTurningEncoderPositionDeg());
   SmartDashboard.putNumber("BR D: ", m_backRight.m_drivingEncoder.getPosition());
-  SmartDashboard.putNumber("BR T: ", m_backRight.m_turningEncoder.getPosition());
-  SmartDashboard.putNumber("BR A: ", m_backRight.m_absoluteEncoderSignal.getValue());
+  SmartDashboard.putNumber("BR T: ", m_backRight.getTurningEncoderPositionDeg());
   SmartDashboard.putNumber("FR D: ", m_frontRight.m_drivingEncoder.getPosition());
-  SmartDashboard.putNumber("FR T: ", m_frontRight.m_turningEncoder.getPosition());
-  SmartDashboard.putNumber("FR A: ", m_frontRight.m_absoluteEncoderSignal.getValue());
+  SmartDashboard.putNumber("FR T: ", m_frontRight.getTurningEncoderPositionDeg());
 }
 }

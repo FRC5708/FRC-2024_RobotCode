@@ -56,6 +56,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    System.out.println("periodic");
       //m_robotContainer.test.report();
       //m_robotContainer.test.allMotors();
       //m_robotContainer.test.oneMotor();

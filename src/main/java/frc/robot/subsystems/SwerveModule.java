@@ -19,6 +19,7 @@ import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.RelativeEncoder;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.StatusSignal;
+import com.ctre.phoenix6.configs.CANcoderConfiguration;
 
 import frc.robot.Constants;
 import frc.robot.Constants.SwerveConstants;
@@ -101,12 +102,16 @@ public class SwerveModule {
     // It would be best to fetch the current encoder signal at the start of
     // each periodic tick and then use that value for the rest of the tick.
     m_turningEncoderSignal.refresh();
-    m_turningEncoderPosition = m_turningEncoderSignal.getValueAsDouble();
+    m_turningEncoderPosition = m_turningEncoderSignal.getValueAsDouble() * Math.PI;
     return m_turningEncoderPosition;
   }
 
   public double getTurningEncoderPosition() {
     return m_turningEncoderPosition;
+  }
+
+  public double getTurningEncoderPositionDeg() {
+    return m_turningEncoderPosition * 180.0 / Math.PI;
   }
 
   /**
@@ -156,14 +161,16 @@ public class SwerveModule {
         new Rotation2d(getTurningEncoderPosition()));
 
     // Command driving SPARK MAX towards its respective setpoints.
-    m_drivingPIDController.setReference(optimizedDesiredState.speedMetersPerSecond, CANSparkMax.ControlType.kVelocity);
+    //m_drivingPIDController.setReference(optimizedDesiredState.speedMetersPerSecond, CANSparkMax.ControlType.kVelocity);
+    m_drivingPIDController.setReference(0.0, CANSparkMax.ControlType.kVelocity);
 
     // Calculate the turning motor output from the turning PID controller.
     final double turnOutput = m_turningPIDController.calculate(
       getTurningEncoderPosition(),
       optimizedDesiredState.angle.getRadians()
     );
-    m_turningSparkMax.setVoltage(turnOutput);
+    //m_turningSparkMax.setVoltage(turnOutput);
+    m_turningSparkMax.setVoltage(0.0);
 
     m_desiredState = desiredState;
   }
