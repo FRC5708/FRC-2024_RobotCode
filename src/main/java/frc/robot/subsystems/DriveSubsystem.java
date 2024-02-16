@@ -8,10 +8,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.function.DoubleSupplier;
 
+import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ModuleConstants;
 import swervelib.SwerveDrive;
@@ -60,9 +62,9 @@ public class DriveSubsystem extends SubsystemBase {
     return run(() -> {
       // Make the robot move
       swerveDrive.drive(new Translation2d(translationX.getAsDouble() * swerveDrive.getMaximumVelocity(),
-                                          translationY.getAsDouble() * swerveDrive.getMaximumVelocity()),
+                                          -translationY.getAsDouble() * swerveDrive.getMaximumVelocity()),
                         angularRotationX.getAsDouble() * swerveDrive.getMaximumAngularVelocity(),
-                        false,
+                        true,
                         false);
     });
   }
@@ -70,5 +72,10 @@ public class DriveSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+
+  public Command zeroGyro() {
+    return new InstantCommand(() ->
+    swerveDrive.setGyro(new Rotation3d(0,0,0)));
   }
 }

@@ -8,19 +8,18 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.DeferredCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
-import frc.robot.Constants.OIConstants;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.TestSubsystem;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
 import java.util.function.DoubleSupplier;
 import java.util.function.BooleanSupplier;
+import frc.robot.Constants.*;
 
 public class RobotContainer {
   boolean setupSwerve = true;
-  XboxController m_driverController = new XboxController(0); // CHANGE PORT
+  CommandXboxController m_driverController = new CommandXboxController(0); // CHANGE PORT
   DriveSubsystem m_drive;
-  TestSubsystem test;
 
   public RobotContainer() {
     if (setupSwerve) {
@@ -36,21 +35,17 @@ public class RobotContainer {
       () -> controller.getRightX()));*/
 
       m_drive.setDefaultCommand(
-        new RunCommand(
-            () -> m_drive.drive(
-                -MathUtil.applyDeadband(m_driverController.getLeftY(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_driverController.getLeftX(), OIConstants.kDriveDeadband),
-                -MathUtil.applyDeadband(m_driverController.getRightX(), OIConstants.kDriveDeadband),
-                false, false),
-            m_drive));
+        m_drive.driveCommand(m_driverController::getLeftX, m_driverController::getLeftY, m_driverController::getRightX));
     }
     else {
-      test = new TestSubsystem();
+      //test = new TestSubsystem();
     }
     configureBindings();
   }
 
-  private void configureBindings() {}
+  private void configureBindings() {
+      m_driverController.start().onTrue(m_drive.zeroGyro());
+  }
 
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");
