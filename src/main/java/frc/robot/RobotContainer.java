@@ -13,8 +13,13 @@ import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
 import java.util.function.DoubleSupplier;
+
+import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.commands.PathPlannerAuto;
+
 import java.util.function.BooleanSupplier;
 import frc.robot.Constants.*;
+import frc.robot.commands.RunBelt;
 
 public class RobotContainer {
   boolean setupSwerve = true;
@@ -22,24 +27,13 @@ public class RobotContainer {
   DriveSubsystem m_drive;
 
   public RobotContainer() {
-    if (setupSwerve) {
-      m_drive = new DriveSubsystem();
-      /*drive.setDefaultCommand(new DefaultSwerve(drive, 
-      () -> controller.getLeftX(), 
-      () -> controller.getLeftY(), 
-      () -> controller.getRightX(), 
-      () -> controller.getAButtonPressed(),
-      () -> drive.getHeading()));
-      drive.setDefaultCommand(new TestDrive(drive, () -> controller.getLeftX(), 
-      () -> controller.getLeftY(), 
-      () -> controller.getRightX()));*/
 
-      m_drive.setDefaultCommand(
+    m_drive = new DriveSubsystem();
+    NamedCommands.registerCommand("Run Belt", new RunBelt());
+
+    m_drive.setDefaultCommand(
         m_drive.driveCommand(m_driverController::getLeftX, m_driverController::getLeftY, m_driverController::getRightX));
-    }
-    else {
-      //test = new TestSubsystem();
-    }
+
     configureBindings();
   }
 
@@ -48,6 +42,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return Commands.print("No autonomous command configured");
+    return new PathPlannerAuto("the economy");
   }
 }
