@@ -13,7 +13,8 @@ import frc.robot.Constants.AboveChassisConstants;
 
 public class ThingsSubsystem extends SubsystemBase {
   /** Creates a new ThingsSubsystem. */
-  public CANSparkMax shooterMotor = new CANSparkMax(AboveChassisConstants.shooterMotorID, MotorType.kBrushless);
+  public CANSparkMax shooterMotor1 = new CANSparkMax(AboveChassisConstants.shooterMotorID1, MotorType.kBrushless);
+  public CANSparkMax shooterMotor2 = new CANSparkMax(AboveChassisConstants.shooterMotorID2, MotorType.kBrushless);
   public CANSparkMax intakeMotor = new CANSparkMax(AboveChassisConstants.intakeMotorID, MotorType.kBrushless);
   public CANSparkMax beltMotor = new CANSparkMax(AboveChassisConstants.beltMotorID,MotorType.kBrushless);
 
@@ -29,7 +30,12 @@ public class ThingsSubsystem extends SubsystemBase {
   }
 
   public Command runShooter(double power) {
-    return run(() -> shooterMotor.set(power));
+    return run(() -> runMotors(power));
+  }
+
+  public void runMotors(double power) {
+    shooterMotor1.set(power);
+    shooterMotor2.set(power);
   }
 
   public Command runBelt(double power) {

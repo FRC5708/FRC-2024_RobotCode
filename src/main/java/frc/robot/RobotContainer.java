@@ -18,7 +18,7 @@ import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import java.util.function.BooleanSupplier;
-import frc.robot.Constants.*;
+import frc.robot.Constants;
 import frc.robot.commands.PickUpAuto;
 import frc.robot.commands.ShootAuto;
 import frc.robot.subsystems.ThingsSubsystem;
@@ -44,9 +44,10 @@ public class RobotContainer {
 
   private void configureBindings() {
       m_driverController.start().onTrue(m_drive.zeroGyro());
-      m_driverController.a().whileTrue(m_things.runBelt(0.5));
+      m_driverController.a().whileTrue(m_things.runBelt(1));
       m_driverController.b().whileTrue(m_things.runShooter(1));
-      m_driverController.x().whileTrue(m_things.runIntake(0.4));
+      m_driverController.b().whileTrue(m_things.runShooter(1));
+      m_driverController.x().whileTrue(m_things.runIntake(1));
   }
 
   public Command getAutonomousCommand() {

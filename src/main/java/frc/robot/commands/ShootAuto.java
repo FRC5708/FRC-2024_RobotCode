@@ -26,7 +26,8 @@ public class ShootAuto extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_things.shooterMotor.set(1);
+    m_things.shooterMotor1.set(1);
+    m_things.shooterMotor2.set(1);
     if(System.currentTimeMillis() > startTime + 500) {
       m_things.beltMotor.set(0.4);
     }

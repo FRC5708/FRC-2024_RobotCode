@@ -8,6 +8,8 @@ public class Constants {
     public class AboveChassisConstants {
         public static int intakeMotorID = 0;
         public static int beltMotorID = 0;
+        public static int shooterMotorID1 = 0;
+        public static int shooterMotorID2 = 0;
     }
 
     public static class OperatorConstants {
