@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -56,7 +57,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    System.out.println("periodic");
+      SmartDashboard.putNumber("navX raw heading", m_robotContainer.getDriveSubsystem().swerveDrive.getGyro().getRawRotation3d().getZ());
+      SmartDashboard.putNumber("swerve odometry percieved heading", m_robotContainer.getDriveSubsystem().swerveDrive.getOdometryHeading().getDegrees());
       //m_robotContainer.test.report();
       //m_robotContainer.test.allMotors();
       //m_robotContainer.test.oneMotor();

@@ -14,6 +14,7 @@ import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
@@ -41,7 +42,7 @@ public class DriveSubsystem extends SubsystemBase {
   
   */ 
   
-  SwerveDrive swerveDrive;
+  public SwerveDrive swerveDrive;
 
   SwerveDriveOdometry m_odometry;
 
@@ -67,9 +68,9 @@ public class DriveSubsystem extends SubsystemBase {
             this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
             this::driveRobotRelative, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
             new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
-                    new PIDConstants(5.0, 0.0, 0.0), // Translation PID constants
-                    new PIDConstants(5.0, 0.0, 0.0), // Rotation PID constants
-                    4.5, // Max module speed, in m/s
+                    new PIDConstants(4, 0.0, 0.0), // Translation PID constants
+                    new PIDConstants(4, 0.0, 0.0), // Rotation PID constants
+                    ModuleConstants.maxSpeed, // Max module speed, in m/s
                     0.356, // Drive base radius in meters. Distance from robot center to furthest module.
                     new ReplanningConfig() // Default path replanning config. See the API for the options here
             ),
@@ -102,8 +103,8 @@ public class DriveSubsystem extends SubsystemBase {
   {
     return run(() -> {
       // Make the robot move
-      swerveDrive.drive(new Translation2d(translationX.getAsDouble() * swerveDrive.getMaximumVelocity(),
-                                          -translationY.getAsDouble() * swerveDrive.getMaximumVelocity()),
+      swerveDrive.drive(new Translation2d(-translationY.getAsDouble() * swerveDrive.getMaximumVelocity(),
+                        -translationX.getAsDouble() * swerveDrive.getMaximumVelocity()),
                         angularRotationX.getAsDouble() * swerveDrive.getMaximumAngularVelocity(),
                         true,
                         false);
