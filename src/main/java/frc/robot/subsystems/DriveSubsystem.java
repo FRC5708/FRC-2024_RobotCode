@@ -50,6 +50,8 @@ public class DriveSubsystem extends SubsystemBase {
   public DriveSubsystem() {
     File swerveJsons = new File(Filesystem.getDeployDirectory(), "swerve");
 
+    zeroGyro();
+
   SwerveDriveTelemetry.verbosity = TelemetryVerbosity.HIGH;
     
     try {
@@ -68,7 +70,7 @@ public class DriveSubsystem extends SubsystemBase {
                     new PIDConstants(5.0, 0.0, 0.0), // Translation PID constants
                     new PIDConstants(5.0, 0.0, 0.0), // Rotation PID constants
                     4.5, // Max module speed, in m/s
-                    0.4, // Drive base radius in meters. Distance from robot center to furthest module.
+                    0.356, // Drive base radius in meters. Distance from robot center to furthest module.
                     new ReplanningConfig() // Default path replanning config. See the API for the options here
             ),
             () -> {
@@ -90,7 +92,9 @@ public class DriveSubsystem extends SubsystemBase {
    * Command to drive the robot using translative values and heading as angular velocity.
    *
    * @param translationX     Translation in the X direction.
-   * @param translationY     Translation in the Y direction.
+   * @param tran
+   * 
+   * slationY     Translation in the Y direction.
    * @param angularRotationX Rotation of the robot to set
    * @return Drive command.
    */
