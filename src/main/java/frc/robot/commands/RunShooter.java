@@ -5,10 +5,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.ThingsSubsystem;
 
 public class RunShooter extends Command {
-  /** Creates a new RunShooter. */
-  public RunShooter() {
+  /** Creates a new BeltTeleop. */
+  private ThingsSubsystem m_things;
+  private double m_power;
+
+  public RunShooter(ThingsSubsystem things, double power) {
+    m_things = things;
+    m_power = power;
+    addRequirements(m_things);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -18,7 +25,9 @@ public class RunShooter extends Command {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_things.runShooterMotors(m_power);
+  }
 
   // Called once the command ends or is interrupted.
   @Override

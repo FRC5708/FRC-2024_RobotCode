@@ -25,17 +25,12 @@ public class ThingsSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public Command runShooter(double power) {
-    return run(() -> runShooterMotors(power));
-  }
-
   public void runShooterMotors(double power) {
     shooterMotor1.set(power);
     shooterMotor2.set(power);
   }
 
-  public Command runBelt(double power) {
-    return run(() -> beltMotor.set(power));
+  public void runBeltMotor(double power) {
+    beltMotor.set(power);
   }
-
 }

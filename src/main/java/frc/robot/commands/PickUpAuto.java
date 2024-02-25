@@ -5,16 +5,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ThingsSubsystem;
 
 public class PickUpAuto extends Command {
   /** Creates a new PickUpAuto. */
-    private ThingsSubsystem m_things;
+    private IntakeSubsystem m_intake;
     private double startTime;
-  public PickUpAuto(ThingsSubsystem things) {
+  public PickUpAuto(IntakeSubsystem intake) {
     // Use addRequirements() here to declare subsystem dependencies.
-    m_things = things;
-    addRequirements(m_things);
+    m_intake = intake;
+    addRequirements(m_intake);
     startTime = 0;
   }
 
@@ -27,13 +28,16 @@ public class PickUpAuto extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_things.runIntake(0.5);
-    m_things.beltMotor.set(0.4);
+    m_intake.intakeMotor1.set(0.5);
+    m_intake.intakeMotor2.set(0.5);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_intake.intakeMotor1.set(0);
+    m_intake.intakeMotor2.set(0);
+  }
 
   // Returns true when the command should end.
   @Override
