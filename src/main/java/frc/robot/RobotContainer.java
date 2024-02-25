@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.DeferredCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
 import java.util.function.DoubleSupplier;
@@ -19,8 +20,10 @@ import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import java.util.function.BooleanSupplier;
 import frc.robot.Constants;
-import frc.robot.commands.PickUpAuto;
-import frc.robot.commands.ShootAuto;
+import frc.robot.commands.RunBelt;
+import frc.robot.commands.RunIntake;
+import frc.robot.commands.RunShooter;
+import frc.robot.commands.RunShooterBelt;
 import frc.robot.subsystems.ThingsSubsystem;
 
 public class RobotContainer {
@@ -28,26 +31,34 @@ public class RobotContainer {
   CommandXboxController m_driverController = new CommandXboxController(0); // CHANGE PORT
   DriveSubsystem m_drive;
   ThingsSubsystem m_things;
+  IntakeSubsystem m_intake;
 
   public RobotContainer() {
 
     m_drive = new DriveSubsystem();
     m_things = new ThingsSubsystem();
-    NamedCommands.registerCommand("Shoot", new ShootAuto(m_things));
-    NamedCommands.registerCommand("Pick up", new PickUpAuto(m_things));
+    m_intake = new IntakeSubsystem();
+    NamedCommands.registerCommand("Start intake", new RunIntake(m_intake, 0.5));
+    NamedCommands.registerCommand("Stop intake", new RunIntake(m_intake, 0));
+    NamedCommands.registerCommand("Start belt", new RunBelt(m_things, 0.4));
+    NamedCommands.registerCommand("Stop belt", new RunBelt(m_things, 0));
+    NamedCommands.registerCommand("Spin up", new RunShooter(m_things, 1));
+    NamedCommands.registerCommand("Spin down", new RunShooter(m_things,0));
 
     m_drive.setDefaultCommand(
         m_drive.driveCommand(m_driverController::getLeftX, m_driverController::getLeftY, m_driverController::getRightX));
+
+    m_intake.setDefaultCommand(new RunIntake(m_intake,0));
+    m_things.setDefaultCommand(new RunShooterBelt(m_things, 0));
 
     configureBindings();
   }
 
   private void configureBindings() {
       m_driverController.start().onTrue(m_drive.zeroGyro());
-      m_driverController.a().whileTrue(m_things.runBelt(1));
-      m_driverController.b().whileTrue(m_things.runShooter(1));
-      m_driverController.b().whileTrue(m_things.runShooter(1));
-      m_driverController.x().whileTrue(m_things.runIntake(1));
+      m_driverController.a().whileTrue(new RunIntake(m_intake, 0.5));
+      m_driverController.b().whileTrue(new RunShooter(m_things, 1));
+      m_driverController.x().whileTrue(new RunBelt(m_things, 0.4));
   }
 
   public Command getAutonomousCommand() {
