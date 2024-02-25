@@ -5,7 +5,6 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkLowLevel.MotorType;
-import com.ctre.phoenix6.hardware.TalonFX;
 import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj2.command.Command;
@@ -14,6 +13,7 @@ import frc.robot.Constants.AboveChassisConstants;
 
 public class ThingsSubsystem extends SubsystemBase {
   /** Creates a new ThingsSubsystem. */
+  public Talon
   public TalonFX shooterMotor1 = new TalonFX(AboveChassisConstants.shooterMotorID1);
   public TalonFX shooterMotor2 = new TalonFX(AboveChassisConstants.shooterMotorID2);
   public CANSparkMax beltMotor = new CANSparkMax(AboveChassisConstants.beltMotorID,MotorType.kBrushless);
