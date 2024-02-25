@@ -53,4 +53,8 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     return new PathPlannerAuto("Shoot move shoot");
   }
+
+  public DriveSubsystem getDriveSubsystem() {
+    return m_drive;
+  }
 }

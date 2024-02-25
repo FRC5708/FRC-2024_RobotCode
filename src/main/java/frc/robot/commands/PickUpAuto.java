@@ -27,7 +27,7 @@ public class PickUpAuto extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_things.intakeMotor.set(0.5);
+    m_things.runIntake(0.5);
     m_things.beltMotor.set(0.4);
   }
 

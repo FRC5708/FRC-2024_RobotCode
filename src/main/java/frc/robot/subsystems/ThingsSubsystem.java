@@ -15,7 +15,8 @@ public class ThingsSubsystem extends SubsystemBase {
   /** Creates a new ThingsSubsystem. */
   public CANSparkMax shooterMotor1 = new CANSparkMax(AboveChassisConstants.shooterMotorID1, MotorType.kBrushless);
   public CANSparkMax shooterMotor2 = new CANSparkMax(AboveChassisConstants.shooterMotorID2, MotorType.kBrushless);
-  public CANSparkMax intakeMotor = new CANSparkMax(AboveChassisConstants.intakeMotorID, MotorType.kBrushless);
+  public CANSparkMax intakeMotor1 = new CANSparkMax(AboveChassisConstants.intakeMotorID1, MotorType.kBrushless);
+  public CANSparkMax intakeMotor2 = new CANSparkMax(AboveChassisConstants.intakeMotorID2, MotorType.kBrushless);
   public CANSparkMax beltMotor = new CANSparkMax(AboveChassisConstants.beltMotorID,MotorType.kBrushless);
 
   public ThingsSubsystem() {}
@@ -26,16 +27,21 @@ public class ThingsSubsystem extends SubsystemBase {
   }
 
   public Command runIntake(double power) {
-    return run(() -> intakeMotor.set(power));
+    return run(() -> runIntakeMotors(power));
   }
 
   public Command runShooter(double power) {
-    return run(() -> runMotors(power));
+    return run(() -> runShooterMotors(power));
   }
 
-  public void runMotors(double power) {
+  public void runShooterMotors(double power) {
     shooterMotor1.set(power);
     shooterMotor2.set(power);
+  }
+
+  public void runIntakeMotors(double power) {
+    intakeMotor1.set(power);
+    intakeMotor2.set(power);
   }
 
   public Command runBelt(double power) {
