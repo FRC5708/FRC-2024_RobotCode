@@ -6,16 +6,16 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
-
+import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.AboveChassisConstants;
 
 public class ThingsSubsystem extends SubsystemBase {
   /** Creates a new ThingsSubsystem. */
-  public Talon
-  public TalonFX shooterMotor1 = new TalonFX(AboveChassisConstants.shooterMotorID1);
-  public TalonFX shooterMotor2 = new TalonFX(AboveChassisConstants.shooterMotorID2);
+  public TalonSRX shooterMotor1 = new TalonSRX(AboveChassisConstants.shooterMotorID1);
+  public TalonSRX shooterMotor2 = new TalonSRX(AboveChassisConstants.shooterMotorID2);
   public CANSparkMax beltMotor = new CANSparkMax(AboveChassisConstants.beltMotorID,MotorType.kBrushless);
 
   public ThingsSubsystem() {}
@@ -26,8 +26,8 @@ public class ThingsSubsystem extends SubsystemBase {
   }
 
   public void runShooterMotors(double power) {
-    shooterMotor1.set(power);
-    shooterMotor2.set(power);
+    shooterMotor1.set(TalonSRXControlMode.PercentOutput,power);
+    shooterMotor2.set(TalonSRXControlMode.PercentOutput,power);
   }
 
   public void runBeltMotor(double power) {
