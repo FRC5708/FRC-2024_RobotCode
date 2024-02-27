@@ -28,7 +28,7 @@ import frc.robot.subsystems.ThingsSubsystem;
 
 public class RobotContainer {
   boolean setupSwerve = true;
-  CommandXboxController m_driverController = new CommandXboxController(0); // CHANGE PORT
+  CommandXboxController m_driverController = new CommandXboxController(0);
   DriveSubsystem m_drive;
   ThingsSubsystem m_things;
   IntakeSubsystem m_intake;
@@ -38,11 +38,11 @@ public class RobotContainer {
     m_drive = new DriveSubsystem();
     m_things = new ThingsSubsystem();
     m_intake = new IntakeSubsystem();
-    NamedCommands.registerCommand("Start intake", new RunIntake(m_intake, 0.5));
+    NamedCommands.registerCommand("Start intake", new RunIntake(m_intake, 0.3));
     NamedCommands.registerCommand("Stop intake", new RunIntake(m_intake, 0));
-    NamedCommands.registerCommand("Start belt", new RunBelt(m_things, 0.4));
+    NamedCommands.registerCommand("Start belt", new RunBelt(m_things, -0.6));
     NamedCommands.registerCommand("Stop belt", new RunBelt(m_things, 0));
-    NamedCommands.registerCommand("Spin up", new RunShooter(m_things, 1));
+    NamedCommands.registerCommand("Spin up", new RunShooter(m_things, -1));
     NamedCommands.registerCommand("Spin down", new RunShooter(m_things,0));
 
     m_drive.setDefaultCommand(
@@ -56,9 +56,13 @@ public class RobotContainer {
 
   private void configureBindings() {
       m_driverController.start().onTrue(m_drive.zeroGyro());
-      m_driverController.a().whileTrue(new RunIntake(m_intake, 0.5));
-      m_driverController.b().whileTrue(new RunShooter(m_things, 1));
-      m_driverController.x().whileTrue(new RunBelt(m_things, 0.4));
+      //Reverse Intake
+      m_driverController.y().whileTrue(new RunIntake(m_intake, -0.3));
+      //Intake
+      m_driverController.leftTrigger().whileTrue(new RunIntake(m_intake, 0.3));
+      m_driverController.leftTrigger().whileTrue(new RunBelt(m_things, -0.6));
+      //Shoots
+      m_driverController.rightTrigger().whileTrue(new RunShooter(m_things, -1));
   }
 
   public Command getAutonomousCommand() {

@@ -12,7 +12,7 @@ public class Constants {
         public static int beltMotorID2 = 12;
         public static int shooterMotorID1 = 13;
         public static int shooterMotorID2 = 14;
-        public static int climberID2 = 15;
+        public static int climberID1 = 15;
     }
 
     public static class OperatorConstants {
