@@ -16,7 +16,8 @@ public class ThingsSubsystem extends SubsystemBase {
   /** Creates a new ThingsSubsystem. */
   public TalonSRX shooterMotor1 = new TalonSRX(AboveChassisConstants.shooterMotorID1);
   public TalonSRX shooterMotor2 = new TalonSRX(AboveChassisConstants.shooterMotorID2);
-  public CANSparkMax beltMotor = new CANSparkMax(AboveChassisConstants.beltMotorID,MotorType.kBrushless);
+  public CANSparkMax beltMotor1 = new CANSparkMax(AboveChassisConstants.beltMotorID1,MotorType.kBrushless);
+  public CANSparkMax beltMotor2 = new CANSparkMax(AboveChassisConstants.beltMotorID2,MotorType.kBrushless);
 
   public ThingsSubsystem() {}
 
@@ -31,6 +32,7 @@ public class ThingsSubsystem extends SubsystemBase {
   }
 
   public void runBeltMotor(double power) {
-    beltMotor.set(power);
+    beltMotor1.set(power);
+    beltMotor2.set(power);
   }
 }
