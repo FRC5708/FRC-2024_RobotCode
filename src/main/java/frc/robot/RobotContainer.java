@@ -21,6 +21,7 @@ import com.pathplanner.lib.commands.PathPlannerAuto;
 import java.util.function.BooleanSupplier;
 import frc.robot.Constants;
 import frc.robot.commands.RunBelt;
+import frc.robot.commands.RunClimber;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunShooter;
 import frc.robot.commands.RunShooterBelt;
@@ -63,6 +64,10 @@ public class RobotContainer {
       m_driverController.leftTrigger().whileTrue(new RunBelt(m_things, -0.6));
       //Shoots
       m_driverController.rightTrigger().whileTrue(new RunShooter(m_things, -1));
+      //Climb Up
+      m_driverController.leftBumper().whileTrue(new RunClimber(m_things, .25));
+      //Climb Down
+      m_driverController.rightBumper().whileTrue(new RunClimber(m_things, -.25));
   }
 
   public Command getAutonomousCommand() {
