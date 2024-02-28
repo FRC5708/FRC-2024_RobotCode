@@ -26,7 +26,7 @@ public class RunBelt extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_things.runBeltMotor(m_power);
+    m_things.runBeltMotors(m_power);
   }
 
   // Called once the command ends or is interrupted.

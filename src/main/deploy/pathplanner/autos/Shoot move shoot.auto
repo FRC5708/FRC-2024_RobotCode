@@ -2,7 +2,7 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.497586995173991,
+      "x": 1.15,
       "y": 5.5
     },
     "rotation": 180.0
@@ -12,9 +12,28 @@
     "data": {
       "commands": [
         {
+          "type": "race",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Shooter & belt"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              }
+            ]
+          }
+        },
+        {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Stop belt"
           }
         },
         {
@@ -24,9 +43,28 @@
           }
         },
         {
+          "type": "race",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Start intake"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              }
+            ]
+          }
+        },
+        {
           "type": "named",
           "data": {
-            "name": "Pick up"
+            "name": "Stop intake"
           }
         },
         {
@@ -36,9 +74,34 @@
           }
         },
         {
+          "type": "race",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Start belt"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 2.0
+                }
+              }
+            ]
+          }
+        },
+        {
           "type": "named",
           "data": {
-            "name": "Shoot"
+            "name": "Stop belt"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Spin down"
           }
         }
       ]

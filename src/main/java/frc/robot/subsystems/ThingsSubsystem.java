@@ -32,7 +32,7 @@ public class ThingsSubsystem extends SubsystemBase {
     shooterMotor2.set(power);
   }
 
-  public void runBeltMotor(double power) {
+  public void runBeltMotors(double power) {
     beltMotor1.set(power);
     beltMotor2.set(power);
   }

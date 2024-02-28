@@ -10,11 +10,13 @@ import frc.robot.subsystems.ThingsSubsystem;
 public class RunShooterBelt extends Command {
   /** Creates a new RunShooterBelt. */
   private ThingsSubsystem m_things;
-  private double m_power;
+  private double m_shooterPower;
+  private double m_beltPower;
 
-  public RunShooterBelt(ThingsSubsystem things, double power) {
+  public RunShooterBelt(ThingsSubsystem things, double shooterPower, double beltPower) {
     m_things = things;
-    m_power = power;
+    m_shooterPower = shooterPower;
+    m_beltPower = beltPower;
     addRequirements(m_things);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -26,8 +28,8 @@ public class RunShooterBelt extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_things.runShooterMotors(m_power);
-    m_things.runBeltMotor(m_power);
+    m_things.runShooterMotors(m_shooterPower);
+    m_things.runBeltMotors(m_beltPower);
   }
 
   // Called once the command ends or is interrupted.
