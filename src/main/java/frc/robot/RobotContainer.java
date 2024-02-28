@@ -61,7 +61,7 @@ public class RobotContainer {
 
   private void configureBindings() {
       m_driverController.start().onTrue(m_drive.zeroGyro());
-      //Reverse Intake
+      /*Reverse Intake
       m_driverController.y().whileTrue(new RunIntake(m_intake, -0.25
       ));
       //Intake
@@ -75,6 +75,7 @@ public class RobotContainer {
       m_driverController.rightBumper().whileTrue(new RunClimber(m_things, .25));
       //Climb Down
       m_driverController.leftBumper().whileTrue(new RunClimber(m_things, -.25));
+      */
   }
 
   public Command getAutonomousCommand() {
