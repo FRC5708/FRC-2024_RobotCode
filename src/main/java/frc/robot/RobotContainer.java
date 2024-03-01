@@ -69,21 +69,18 @@ public class RobotContainer {
 
   private void configureBindings() {
       m_driverController.start().onTrue(m_drive.zeroGyro());
-<<<<<<< Updated upstream
-      /*Reverse Intake
-      m_driverController.y().whileTrue(new RunIntake(m_intake, -0.25
-      ));
-=======
+      //Reverse Intake
+      m_driverController.y().whileTrue(new RunIntake(m_intake, -0.25));
       //Reverse Intake
       m_driverController.y().whileTrue(new RunIntake(m_intake, -0.25));
       //Reverse belt
       m_driverController.x().whileTrue(new RunBelt(m_things, 0.6));
->>>>>>> Stashed changes
       //Intake
       m_driverController.leftTrigger().whileTrue(new RunIntake(m_intake, 0.25));
       m_driverController.leftTrigger().whileTrue(new RunBelt(m_things, -0.7));
       //Shoots into speaker
       m_driverController.rightTrigger().whileTrue(new RunShooterBelt(m_things, -1,-1));
+      //Shoots better into speaker? Maybe
       m_driverController.a().whileTrue(new RunShooter(m_things, -1));
       //Shoots into amp
       m_driverController.b().whileTrue(new RunShooterBelt(m_things, -.15,-0.35));
@@ -91,12 +88,9 @@ public class RobotContainer {
       m_driverController.rightBumper().whileTrue(new RunClimber(m_things, .25));
       //Climb Down
       m_driverController.leftBumper().whileTrue(new RunClimber(m_things, -.25));
-<<<<<<< Updated upstream
-      */
-=======
+
       //Optical assault
       //m_driverController.a().whileTrue(new STROBE(m_blinky));
->>>>>>> Stashed changes
   }
 
   public Command getAutonomousCommand() {
