@@ -9,10 +9,14 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.DeferredCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.subsystems.BlinkySubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
+
 import java.util.function.DoubleSupplier;
 
 import com.pathplanner.lib.auto.NamedCommands;
@@ -25,6 +29,7 @@ import frc.robot.commands.RunClimber;
 import frc.robot.commands.RunIntake;
 import frc.robot.commands.RunShooter;
 import frc.robot.commands.RunShooterBelt;
+import frc.robot.commands.STROBE;
 import frc.robot.commands.StopBelt;
 import frc.robot.commands.StopIntake;
 import frc.robot.commands.StopShooter;
@@ -36,12 +41,14 @@ public class RobotContainer {
   DriveSubsystem m_drive;
   ThingsSubsystem m_things;
   IntakeSubsystem m_intake;
+  BlinkySubsystem m_blinky;
 
   public RobotContainer() {
 
     m_drive = new DriveSubsystem();
     m_things = new ThingsSubsystem();
     m_intake = new IntakeSubsystem();
+    m_blinky = new BlinkySubsystem();
     NamedCommands.registerCommand("Start intake", new RunIntake(m_intake, 0.25));
     NamedCommands.registerCommand("Stop intake", new StopIntake(m_intake));
     NamedCommands.registerCommand("Start belt", new RunBelt(m_things, -0.7));
@@ -55,27 +62,41 @@ public class RobotContainer {
 
     m_intake.setDefaultCommand(new RunIntake(m_intake,0));
     m_things.setDefaultCommand(new RunShooterBelt(m_things, 0, 0));
+    m_blinky.setDefaultCommand(m_blinky.setLightsCommand(true));
 
     configureBindings();
   }
 
   private void configureBindings() {
       m_driverController.start().onTrue(m_drive.zeroGyro());
+<<<<<<< Updated upstream
       /*Reverse Intake
       m_driverController.y().whileTrue(new RunIntake(m_intake, -0.25
       ));
+=======
+      //Reverse Intake
+      m_driverController.y().whileTrue(new RunIntake(m_intake, -0.25));
+      //Reverse belt
+      m_driverController.x().whileTrue(new RunBelt(m_things, 0.6));
+>>>>>>> Stashed changes
       //Intake
       m_driverController.leftTrigger().whileTrue(new RunIntake(m_intake, 0.25));
       m_driverController.leftTrigger().whileTrue(new RunBelt(m_things, -0.7));
-      //Reverse belt
-      m_driverController.x().whileTrue(new RunBelt(m_things, 0.6));
-      //Shoots
-      m_driverController.rightTrigger().whileTrue(new RunShooterBelt(m_things, -1,-0.7));
+      //Shoots into speaker
+      m_driverController.rightTrigger().whileTrue(new RunShooterBelt(m_things, -1,-1));
+      m_driverController.a().whileTrue(new RunShooter(m_things, -1));
+      //Shoots into amp
+      m_driverController.b().whileTrue(new RunShooterBelt(m_things, -.15,-0.35));
       //Climb Up
       m_driverController.rightBumper().whileTrue(new RunClimber(m_things, .25));
       //Climb Down
       m_driverController.leftBumper().whileTrue(new RunClimber(m_things, -.25));
+<<<<<<< Updated upstream
       */
+=======
+      //Optical assault
+      //m_driverController.a().whileTrue(new STROBE(m_blinky));
+>>>>>>> Stashed changes
   }
 
   public Command getAutonomousCommand() {
