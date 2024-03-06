@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.53840850538844,
+        "x": 3.0,
         "y": 5.5
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.921119779382417,
-        "y": 5.4826372509887875
+        "x": 2.3824671374676782,
+        "y": 5.5
       },
       "isLocked": false,
       "linkedName": "Note"
     },
     {
       "anchor": {
-        "x": 1.15,
+        "x": 1.2,
         "y": 5.5
       },
       "prevControl": {
-        "x": 1.572711273993977,
-        "y": 5.497296708879134
+        "x": 1.9,
+        "y": 5.5
       },
       "nextControl": null,
       "isLocked": false,
@@ -30,22 +30,40 @@
   ],
   "rotationTargets": [],
   "constraintZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "New Event Marker",
+      "waypointRelativePos": 0.2,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "Stop intake"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
   "globalConstraints": {
-    "maxVelocity": 3.0,
+    "maxVelocity": 2.5,
     "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 178.58716182178082,
+    "rotation": 0.0,
     "rotateFast": false
   },
   "reversed": false,
   "folder": null,
   "previewStartingState": {
-    "rotation": 179.0081330246731,
+    "rotation": 0.0,
     "velocity": 0
   },
   "useDefaultConstraints": true

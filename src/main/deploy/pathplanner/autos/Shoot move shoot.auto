@@ -1,12 +1,6 @@
 {
   "version": 1.0,
-  "startingPose": {
-    "position": {
-      "x": 1.15,
-      "y": 5.5
-    },
-    "rotation": 180.0
-  },
+  "startingPose": null,
   "command": {
     "type": "sequential",
     "data": {
@@ -33,7 +27,7 @@
         {
           "type": "named",
           "data": {
-            "name": "Stop belt"
+            "name": "Spin down"
           }
         },
         {
@@ -47,24 +41,18 @@
           "data": {
             "commands": [
               {
-                "type": "named",
+                "type": "wait",
                 "data": {
-                  "name": "Start intake"
+                  "waitTime": 3.0
                 }
               },
               {
-                "type": "wait",
+                "type": "named",
                 "data": {
-                  "waitTime": 2.0
+                  "name": "Start belt"
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Stop intake"
           }
         },
         {
@@ -74,13 +62,19 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "Stop belt"
+          }
+        },
+        {
           "type": "race",
           "data": {
             "commands": [
               {
                 "type": "named",
                 "data": {
-                  "name": "Start belt"
+                  "name": "Spin up"
                 }
               },
               {
@@ -90,12 +84,6 @@
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Stop belt"
           }
         },
         {

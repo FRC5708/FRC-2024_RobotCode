@@ -11,6 +11,7 @@ public class Constants {
         public static int beltMotorID1 = 11;
         public static int beltMotorID2 = 12;
         public static int shooterMotorID1 = 13;
+        //14 is bottom, 13 is top
         public static int shooterMotorID2 = 14;
         public static int climberID1 = 15;
         public static int pduID = 20;

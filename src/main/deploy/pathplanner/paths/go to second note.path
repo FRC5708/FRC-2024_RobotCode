@@ -8,7 +8,7 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.6375341209926908,
+        "x": 2.2,
         "y": 5.5
       },
       "isLocked": false,
@@ -16,23 +16,23 @@
     },
     {
       "anchor": {
-        "x": 3.0,
-        "y": 5.5
+        "x": 3.1394462788925583,
+        "y": 7.051199245255634
       },
       "prevControl": {
-        "x": 1.739201394904775,
-        "y": 5.5
+        "x": 1.9080518161036326,
+        "y": 7.197793824159078
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Note"
+      "linkedName": "second note"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "New Constraints Zone",
-      "minWaypointRelativePos": 0.7,
+      "minWaypointRelativePos": 0.65,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 1.0,
@@ -45,7 +45,7 @@
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 0.2,
+      "waypointRelativePos": 0.5,
       "command": {
         "type": "parallel",
         "data": {
@@ -69,13 +69,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0,
+    "rotation": 0,
     "rotateFast": false
   },
   "reversed": false,
   "folder": null,
   "previewStartingState": {
-    "rotation": 0.0,
+    "rotation": 0,
     "velocity": 0
   },
   "useDefaultConstraints": true

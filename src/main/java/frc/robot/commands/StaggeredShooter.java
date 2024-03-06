@@ -5,16 +5,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.BlinkySubsystem;
+import frc.robot.subsystems.ThingsSubsystem;
 
-public class STROBE extends Command {
-  /** Creates a new STROBE. */
-  private BlinkySubsystem m_blinky;
+public class StaggeredShooter extends Command {
+  /** Creates a new StaggeredShooter. */
+  private ThingsSubsystem m_things;
+  private double m_power;
   private double m_startTime;
-  public STROBE(BlinkySubsystem blinky) {
+  public StaggeredShooter(ThingsSubsystem things, double power) {
+    m_things = things;
+    m_power = power;
+    addRequirements(m_things);
     // Use addRequirements() here to declare subsystem dependencies.
-    m_blinky = blinky;
-    addRequirements(m_blinky);
   }
 
   // Called when the command is initially scheduled.
@@ -26,23 +28,19 @@ public class STROBE extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    boolean temp = false;
-    if((System.currentTimeMillis() - m_startTime) % 500 == 0) {
-      m_blinky.setLights(temp);
-      temp = !temp;
+    m_things.runShooterMotor(1, m_power);
+    if(System.currentTimeMillis() - m_startTime > 500) {
+      m_things.runShooterMotor(2,m_power);
     }
-
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    m_blinky.setLights(false);
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return System.currentTimeMillis() - m_startTime > 5000;
+    return System.currentTimeMillis() - m_startTime > 1000;
   }
 }

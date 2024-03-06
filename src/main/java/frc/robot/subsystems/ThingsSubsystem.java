@@ -39,6 +39,14 @@ public class ThingsSubsystem extends SubsystemBase {
 
   public void runClimberMotor(double power) {
     climbingMotor.set(power);
+  }
 
+  public void runShooterMotor(int motor, double power) {
+    if(motor == 1) {
+      shooterMotor1.set(power);
+    }
+    else {
+      shooterMotor2.set(power);
+    }
   }
 }
