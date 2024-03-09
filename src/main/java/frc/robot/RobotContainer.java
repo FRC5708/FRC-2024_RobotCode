@@ -69,7 +69,7 @@ public class RobotContainer {
     SmartDashboard.putData("Auto Chooser", autoChooser);
 
     m_drive.setDefaultCommand(
-        m_drive.driveCommand(m_driverController::getLeftX, m_driverController::getLeftY, m_driverController::getRightX));
+        m_drive.driveCommand(m_driverController::getLeftY, m_driverController::getLeftX, m_driverController::getRightX));
 
     m_intake.setDefaultCommand(new RunIntake(m_intake,0));
     m_things.setDefaultCommand(new DefaultThings(m_things, () -> m_driverController.rightTrigger().getAsBoolean(), 0,0));

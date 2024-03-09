@@ -13,6 +13,7 @@ import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
@@ -24,12 +25,13 @@ import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 import frc.robot.Constants.ModuleConstants;
+import frc.robot.Constants.OperatorConstants;
 import swervelib.SwerveDrive;
 import swervelib.parser.SwerveParser;
 import swervelib.telemetry.SwerveDriveTelemetry;
 import swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
-
 public class DriveSubsystem extends SubsystemBase {
 
   /* 
@@ -104,9 +106,13 @@ public class DriveSubsystem extends SubsystemBase {
   {
     return run(() -> {
       // Make the robot move
-      swerveDrive.drive(new Translation2d(-translationY.getAsDouble() * swerveDrive.getMaximumVelocity(),
-                        -translationX.getAsDouble() * swerveDrive.getMaximumVelocity()),
-                        angularRotationX.getAsDouble() * swerveDrive.getMaximumAngularVelocity(),
+      double x = MathUtil.applyDeadband(translationY.getAsDouble(),OperatorConstants.driveDeadband);
+      double y = MathUtil.applyDeadband(translationX.getAsDouble(),OperatorConstants.driveDeadband);
+      double angle = MathUtil.applyDeadband(angularRotationX.getAsDouble(),OperatorConstants.driveDeadband);
+      swerveDrive.drive(new Translation2d
+                        (x * swerveDrive.getMaximumVelocity(),
+                        y * swerveDrive.getMaximumVelocity()),
+                        angle * swerveDrive.getMaximumAngularVelocity(),
                         true,
                         false);
     });
