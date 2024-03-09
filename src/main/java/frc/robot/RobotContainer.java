@@ -81,7 +81,7 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-      //Sets zero to speaker (????) (what does lincoln mean)
+      //Sets zero
       m_driverController.start().onTrue(m_drive.zeroGyro());
       //Reverse Intake
       m_driverController.leftBumper().whileTrue(new RunIntake(m_intake, -0.25));
@@ -95,14 +95,10 @@ public class RobotContainer {
       m_driverController.rightTrigger().debounce(1).whileTrue(new RunShooter(m_things,-1));
       //Shoots into amp
       m_driverController.rightBumper().whileTrue(new RunShooter(m_things, -.15));
-      //Climb Up
-      m_driverController.b().whileTrue(new RunClimber(m_things, .5));
-      //Climb Down
-      m_driverController.x().whileTrue(new RunClimber(m_things, -.5));
       //Intake from human player
       m_driverController.a().whileTrue(new RunShooter(m_things, .6));
       //Optical assault
-      m_driverController.y().whileTrue(m_blinky.setLightsCommand(true));
+      //m_driverController.y().whileTrue(m_blinky.setLightsCommand(true));
   }
 
   public Command getAutonomousCommand() {
