@@ -68,7 +68,7 @@ public class RobotContainer {
     NamedCommands.registerCommand("Spin down", new StopShooter(m_things));
     NamedCommands.registerCommand("Shooter & belt", new RunShooterBelt(m_things,-1,-0.7));
 
-    autoChooser = AutoBuilder.buildAutoChooser("Shoot move shoot");
+    autoChooser = AutoBuilder.buildAutoChooser("Move");
     SmartDashboard.putData("Auto Chooser", autoChooser);
 
     m_drive.setDefaultCommand(
