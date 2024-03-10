@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.DeferredCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.CommandGenericHID;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.subsystems.BlinkySubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -28,6 +29,7 @@ import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import java.util.function.BooleanSupplier;
 import frc.robot.Constants;
+import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.DefaultThings;
 import frc.robot.commands.RunBelt;
 import frc.robot.commands.RunClimber;
@@ -44,7 +46,8 @@ import frc.robot.subsystems.ThingsSubsystem;
 
 public class RobotContainer {
   boolean setupSwerve = true;
-  CommandXboxController m_driverController = new CommandXboxController(0);
+  CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
+  CommandXboxController m_babyController = new CommandXboxController(OperatorConstants.kBabyControllerPort);
   DriveSubsystem m_drive;
   ThingsSubsystem m_things;
   IntakeSubsystem m_intake;
@@ -83,20 +86,22 @@ public class RobotContainer {
   private void configureBindings() {
       //Sets zero
       m_driverController.start().onTrue(m_drive.zeroGyro());
-      //Reverse Intake
-      m_driverController.leftBumper().whileTrue(new RunIntake(m_intake, -0.25));
-      m_driverController.leftBumper().whileTrue(new RunBelt(m_things, 0.6));
       //Intake
       m_driverController.leftTrigger().whileTrue(new RunIntake(m_intake, 0.25));
-      m_driverController.leftTrigger().whileTrue(new RunBelt(m_things, -0.7));
+      m_driverController.leftTrigger().whileTrue(new RunBelt(m_things, -1));
       //Shoots into speaker
       m_driverController.rightTrigger().onTrue(new StaggeredShooter(m_things, -1));
-      //m_driverController.rightTrigger().whileTrue(new RunShooter(m_things, -1));
       m_driverController.rightTrigger().debounce(1).whileTrue(new RunShooter(m_things,-1));
       //Shoots into amp
       m_driverController.rightBumper().whileTrue(new RunShooter(m_things, -.15));
       //Intake from human player
       m_driverController.a().whileTrue(new RunShooter(m_things, .6));
+      //Controlls for Second Controler Onwards
+      //Second Controler Reverse Intake
+      m_babyController.y().whileTrue(new RunIntake(m_intake, -0.25));
+      m_babyController.y().whileTrue(new RunBelt(m_things, 1));
+      //Second Controler Run Belt
+      m_babyController.a().whileTrue(new RunBelt(m_things, -1));
       //Optical assault
       //m_driverController.y().whileTrue(m_blinky.setLightsCommand(true));
   }

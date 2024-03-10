@@ -14,7 +14,7 @@ public class RunClimber extends Command{
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
-  // Called when the command is initially scheduled.
+  // Called when the command is initially schedulede
   public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
