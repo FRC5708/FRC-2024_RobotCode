@@ -32,6 +32,8 @@ import swervelib.SwerveDrive;
 import swervelib.parser.SwerveParser;
 import swervelib.telemetry.SwerveDriveTelemetry;
 import swervelib.telemetry.SwerveDriveTelemetry.TelemetryVerbosity;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 public class DriveSubsystem extends SubsystemBase {
 
   /* 
@@ -47,6 +49,7 @@ public class DriveSubsystem extends SubsystemBase {
   public SwerveDrive swerveDrive;
 
   SwerveDriveOdometry m_odometry;
+  Field2d m_field = new Field2d();
 
   
   /** Creates a new DriveSubsystem. */
@@ -90,6 +93,7 @@ public class DriveSubsystem extends SubsystemBase {
             },
             this // Reference to this subsystem to set requirements
     );
+    SmartDashboard.putData("Field",m_field);
   }
 
   /**
@@ -107,8 +111,11 @@ public class DriveSubsystem extends SubsystemBase {
     return run(() -> {
       // Make the robot move
       double x = -MathUtil.applyDeadband(translationX.getAsDouble(), OperatorConstants.driveDeadband);
+      x = Math.pow(x, 3);
       double y = -MathUtil.applyDeadband(translationY.getAsDouble(), OperatorConstants.driveDeadband);
+      y = Math.pow(y, 3);
       double angle = -MathUtil.applyDeadband(angularRotationX.getAsDouble(), OperatorConstants.driveDeadband);
+      angle = Math.pow(angle,3);
       swerveDrive.drive(new Translation2d(y * swerveDrive.getMaximumVelocity(),
                         x * swerveDrive.getMaximumVelocity()),
                         angle * swerveDrive.getMaximumAngularVelocity(),
@@ -121,6 +128,7 @@ public class DriveSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    m_field.setRobotPose(getPose());
   }
 
   public Command zeroGyro() {
