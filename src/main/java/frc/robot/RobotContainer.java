@@ -64,11 +64,11 @@ public class RobotContainer {
     NamedCommands.registerCommand("Stop intake", new StopIntake(m_intake));
     NamedCommands.registerCommand("Start belt", new RunBelt(m_things, -0.7));
     NamedCommands.registerCommand("Stop belt", new StopBelt(m_things));
-    NamedCommands.registerCommand("Spin up", new RunShooter(m_things, -1));
+    NamedCommands.registerCommand("Spin up", new StaggeredShooter(m_things, -1));
     NamedCommands.registerCommand("Spin down", new StopShooter(m_things));
     NamedCommands.registerCommand("Shooter & belt", new RunShooterBelt(m_things,-1,-0.7));
 
-    autoChooser = AutoBuilder.buildAutoChooser("Move");
+    autoChooser = AutoBuilder.buildAutoChooser("tur(n)ing test");
     SmartDashboard.putData("Auto Chooser", autoChooser);
 
     m_drive.setDefaultCommand(

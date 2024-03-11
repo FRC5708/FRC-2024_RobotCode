@@ -29,7 +29,7 @@ public class StaggeredShooter extends Command {
   @Override
   public void execute() {
     m_things.runShooterMotor(1, m_power);
-    if(System.currentTimeMillis() - m_startTime > 1500) {
+    if(System.currentTimeMillis() - m_startTime > 500) {
       m_things.runShooterMotor(2,m_power);
     }
   }
@@ -41,6 +41,6 @@ public class StaggeredShooter extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return System.currentTimeMillis() - m_startTime > 1000;
+    return System.currentTimeMillis() - m_startTime > 1500;
   }
 }

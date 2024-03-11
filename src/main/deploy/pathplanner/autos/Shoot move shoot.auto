@@ -1,6 +1,12 @@
 {
   "version": 1.0,
-  "startingPose": null,
+  "startingPose": {
+    "position": {
+      "x": 1.2,
+      "y": 5.5
+    },
+    "rotation": 0
+  },
   "command": {
     "type": "sequential",
     "data": {
@@ -12,7 +18,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "Shooter & belt"
+                  "name": "Spin up"
                 }
               },
               {
@@ -28,6 +34,12 @@
           "type": "named",
           "data": {
             "name": "Spin down"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Stop belt"
           }
         },
         {
@@ -56,15 +68,15 @@
           }
         },
         {
-          "type": "path",
-          "data": {
-            "pathName": "position to fire"
-          }
-        },
-        {
           "type": "named",
           "data": {
             "name": "Stop belt"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "position to fire"
           }
         },
         {
