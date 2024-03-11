@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 2.0,
+      "x": 2.934213868427737,
       "y": 7.0
     },
-    "rotation": 179.03595601842952
+    "rotation": 0
   },
   "command": {
     "type": "sequential",
@@ -14,7 +14,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "short testpt 3"
+            "pathName": "short test pt 2"
           }
         }
       ]
