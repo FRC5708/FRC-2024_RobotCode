@@ -16,15 +16,15 @@
           "data": {
             "commands": [
               {
-                "type": "named",
+                "type": "wait",
                 "data": {
-                  "name": "Spin up"
+                  "waitTime": 1.0
                 }
               },
               {
-                "type": "wait",
+                "type": "named",
                 "data": {
-                  "waitTime": 2.0
+                  "name": "Spin up"
                 }
               }
             ]
@@ -37,15 +37,15 @@
           }
         },
         {
-          "type": "named",
+          "type": "path",
           "data": {
-            "name": "Stop belt"
+            "pathName": "note 1-front start"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "go to note"
+            "pathName": "shoot 1-front start"
           }
         },
         {
@@ -55,13 +55,13 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 3.0
+                  "waitTime": 1.0
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "Start belt"
+                  "name": "Spin up"
                 }
               }
             ]
@@ -70,13 +70,19 @@
         {
           "type": "named",
           "data": {
-            "name": "Stop belt"
+            "name": "Spin down"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "position to fire"
+            "pathName": "note 2- front start"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "shoot 2-front start"
           }
         },
         {
@@ -84,15 +90,15 @@
           "data": {
             "commands": [
               {
-                "type": "named",
+                "type": "wait",
                 "data": {
-                  "name": "Spin up"
+                  "waitTime": 1.0
                 }
               },
               {
-                "type": "wait",
+                "type": "named",
                 "data": {
-                  "waitTime": 2.0
+                  "name": "Spin up"
                 }
               }
             ]

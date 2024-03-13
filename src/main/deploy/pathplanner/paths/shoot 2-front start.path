@@ -8,45 +8,53 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.576980399885249,
-        "y": 7.051199245255634
+        "x": 2.3185166370332744,
+        "y": 6.977901955803912
       },
       "isLocked": false,
       "linkedName": "second note"
     },
     {
       "anchor": {
-        "x": 2.2300667827013494,
-        "y": 6.25
+        "x": 1.2,
+        "y": 5.5
       },
       "prevControl": {
-        "x": 1.93380045184702,
-        "y": 5.875
-      },
-      "nextControl": {
-        "x": 2.526333113555679,
-        "y": 6.625
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 2.934213868427737,
-        "y": 7.0
-      },
-      "prevControl": {
-        "x": 2.9312393434016624,
-        "y": 7.0
+        "x": 2.2159004318008644,
+        "y": 5.819804782466708
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "front shoot"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "New Event Marker",
+      "waypointRelativePos": 0.7,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "Stop intake"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "Stop belt"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 1.0,
     "maxAcceleration": 1.0,
@@ -55,13 +63,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0,
+    "rotation": 0,
     "rotateFast": false
   },
   "reversed": false,
   "folder": null,
   "previewStartingState": {
-    "rotation": 0.0,
+    "rotation": 0,
     "velocity": 0
   },
   "useDefaultConstraints": true

@@ -87,8 +87,8 @@ public class RobotContainer {
       //Sets zero
       m_driverController.start().onTrue(m_drive.zeroGyro());
       //Intake
-      m_driverController.leftTrigger().whileTrue(new RunIntake(m_intake, 0.25));
-      m_driverController.leftTrigger().whileTrue(new RunBelt(m_things, -1));
+      m_driverController.leftTrigger().whileTrue(new RunIntake(m_intake, 0.2));// was .25
+      m_driverController.leftTrigger().whileTrue(new RunBelt(m_things, -.8));//
       //Shoots into speaker
       m_driverController.rightTrigger().onTrue(new StaggeredShooter(m_things, -1));
       m_driverController.rightTrigger().debounce(1).whileTrue(new RunShooter(m_things,-1));
@@ -96,8 +96,12 @@ public class RobotContainer {
       m_driverController.rightBumper().whileTrue(new RunShooter(m_things, -.15));
       //Intake from human player
       m_driverController.a().whileTrue(new RunShooter(m_things, .6));
-      //Controlls for Second Controler Onwards
-      //Second Controler Reverse Intake
+      //Reverse belt & intake
+      m_driverController.a().whileTrue(new RunIntake(m_intake, 0.2));
+      m_driverController.a().whileTrue(new RunBelt(m_things, -0.8));
+
+
+      //Second Controller Reverse Intake
       m_babyController.y().whileTrue(new RunIntake(m_intake, -0.25));
       m_babyController.y().whileTrue(new RunBelt(m_things, 1));
       //Second Controler Run Belt

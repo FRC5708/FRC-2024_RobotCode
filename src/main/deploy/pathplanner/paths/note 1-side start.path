@@ -1,0 +1,76 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 0.749954642772275,
+        "y": 6.49413984541799
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.6148626582967456,
+        "y": 6.948583040023223
+      },
+      "isLocked": false,
+      "linkedName": "left side shoot"
+    },
+    {
+      "anchor": {
+        "x": 3.1394462788925583,
+        "y": 7.051199245255634
+      },
+      "prevControl": {
+        "x": 2.1394462788925583,
+        "y": 7.051199245255634
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "second note"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "eventMarkers": [
+    {
+      "name": "New Event Marker",
+      "waypointRelativePos": 0.7,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "Start intake"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "Start belt"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 1.0,
+    "maxAcceleration": 1.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": null,
+  "previewStartingState": {
+    "rotation": 59.42077312863539,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}

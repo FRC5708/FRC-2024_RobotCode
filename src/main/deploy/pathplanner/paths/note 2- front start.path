@@ -12,7 +12,7 @@
         "y": 5.5
       },
       "isLocked": false,
-      "linkedName": "start"
+      "linkedName": "front shoot"
     },
     {
       "anchor": {
@@ -45,7 +45,7 @@
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 0.5,
+      "waypointRelativePos": 0.55,
       "command": {
         "type": "parallel",
         "data": {
@@ -54,6 +54,12 @@
               "type": "named",
               "data": {
                 "name": "Start intake"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "Start belt"
               }
             }
           ]
