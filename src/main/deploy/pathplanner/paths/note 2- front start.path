@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.2,
-        "y": 5.5
+        "x": 1.9373707318843216,
+        "y": 6.215610145506006
       },
       "isLocked": false,
       "linkedName": "front shoot"
@@ -20,8 +20,8 @@
         "y": 7.051199245255634
       },
       "prevControl": {
-        "x": 1.9080518161036326,
-        "y": 7.197793824159078
+        "x": 1.5122464530643351,
+        "y": 7.124496534707355
       },
       "nextControl": null,
       "isLocked": false,
@@ -68,8 +68,8 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 1.0,
-    "maxAcceleration": 1.0,
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0
   },

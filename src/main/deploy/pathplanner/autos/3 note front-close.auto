@@ -1,0 +1,155 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.2,
+      "y": 5.5
+    },
+    "rotation": 0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "race",
+          "data": {
+            "commands": [
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Spin up"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Spin down"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "note 1-front start"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "shoot 1-front start"
+          }
+        },
+        {
+          "type": "race",
+          "data": {
+            "commands": [
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Spin up"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Spin down"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "note 2- front start"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "shoot 2-front start"
+          }
+        },
+        {
+          "type": "race",
+          "data": {
+            "commands": [
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Spin up"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Spin down"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "note 3-front start"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "shoot 3-front start"
+          }
+        },
+        {
+          "type": "race",
+          "data": {
+            "commands": [
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 1.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Spin up"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Spin down"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

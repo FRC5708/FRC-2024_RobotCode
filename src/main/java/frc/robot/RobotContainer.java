@@ -60,15 +60,15 @@ public class RobotContainer {
     m_things = new ThingsSubsystem();
     m_intake = new IntakeSubsystem();
     m_blinky = new BlinkySubsystem();
-    NamedCommands.registerCommand("Start intake", new RunIntake(m_intake, 0.3));
+    NamedCommands.registerCommand("Start intake", new RunIntake(m_intake, 0.2));
     NamedCommands.registerCommand("Stop intake", new StopIntake(m_intake));
-    NamedCommands.registerCommand("Start belt", new RunBelt(m_things, -0.7));
+    NamedCommands.registerCommand("Start belt", new RunBelt(m_things, -0.8));
     NamedCommands.registerCommand("Stop belt", new StopBelt(m_things));
     NamedCommands.registerCommand("Spin up", new StaggeredShooter(m_things, -1));
     NamedCommands.registerCommand("Spin down", new StopShooter(m_things));
     NamedCommands.registerCommand("Shooter & belt", new RunShooterBelt(m_things,-1,-0.7));
 
-    autoChooser = AutoBuilder.buildAutoChooser("short test");
+    autoChooser = AutoBuilder.buildAutoChooser("2 note front");
     SmartDashboard.putData("Auto Chooser", autoChooser);
 
     m_drive.setDefaultCommand(
