@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.728981457962916,
-        "y": 6.977901955803912
+        "x": 0.6180195217533299,
+        "y": 4.559091403897094
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.9080518161036322,
-        "y": 6.904604666352189
+        "x": 1.4096302478319247,
+        "y": 4.192604956638485
       },
       "isLocked": false,
-      "linkedName": "second note"
+      "linkedName": "bottom side shoot"
     },
     {
       "anchor": {
-        "x": 1.2,
-        "y": 5.5
+        "x": 2.787619289524294,
+        "y": 4.089988751406074
       },
       "prevControl": {
-        "x": 2.2159004318008644,
-        "y": 5.819804782466708
+        "x": 1.7876192895242942,
+        "y": 4.089988751406074
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "front shoot"
+      "linkedName": "stage note"
     }
   ],
   "rotationTargets": [],
@@ -33,7 +33,7 @@
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 0.85,
+      "waypointRelativePos": 0.7,
       "command": {
         "type": "parallel",
         "data": {
@@ -41,13 +41,13 @@
             {
               "type": "named",
               "data": {
-                "name": "Stop intake"
+                "name": "Start intake"
               }
             },
             {
               "type": "named",
               "data": {
-                "name": "Stop belt"
+                "name": "Start belt"
               }
             }
           ]
@@ -69,7 +69,7 @@
   "reversed": false,
   "folder": null,
   "previewStartingState": {
-    "rotation": 0,
+    "rotation": -60.25511870305777,
     "velocity": 0
   },
   "useDefaultConstraints": true

@@ -97,8 +97,8 @@ public class RobotContainer {
       //Intake from human player
       m_driverController.a().whileTrue(new RunShooter(m_things, .6));
       //Reverse belt & intake
-      m_driverController.a().whileTrue(new RunIntake(m_intake, 0.2));
-      m_driverController.a().whileTrue(new RunBelt(m_things, -0.8));
+      m_driverController.y().whileTrue(new RunIntake(m_intake, -0.2));
+      m_driverController.y().whileTrue(new RunBelt(m_things, 0.8));
 
 
       //Second Controller Reverse Intake

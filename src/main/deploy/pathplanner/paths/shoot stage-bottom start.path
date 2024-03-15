@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.749954642772275,
-        "y": 6.49413984541799
+        "x": 2.787619289524294,
+        "y": 4.089988751406074
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.6148626582967456,
-        "y": 6.948583040023223
+        "x": 1.7907761529808779,
+        "y": 4.280561703980552
       },
       "isLocked": false,
-      "linkedName": "left side shoot"
+      "linkedName": "stage note"
     },
     {
       "anchor": {
-        "x": 2.743640915853261,
-        "y": 7.021880329474945
+        "x": 0.6180195217533299,
+        "y": 4.559091403897094
       },
       "prevControl": {
-        "x": 1.7436409158532609,
-        "y": 7.021880329474945
+        "x": 1.5577121425392382,
+        "y": 4.217071260571425
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "second note"
+      "linkedName": "bottom side shoot"
     }
   ],
   "rotationTargets": [],
@@ -33,7 +33,7 @@
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 0.7,
+      "waypointRelativePos": 0.8,
       "command": {
         "type": "parallel",
         "data": {
@@ -41,13 +41,13 @@
             {
               "type": "named",
               "data": {
-                "name": "Start intake"
+                "name": "Stop intake"
               }
             },
             {
               "type": "named",
               "data": {
-                "name": "Start belt"
+                "name": "Stop belt"
               }
             }
           ]
@@ -63,13 +63,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0,
+    "rotation": -63.43494882292201,
     "rotateFast": false
   },
   "reversed": false,
   "folder": null,
   "previewStartingState": {
-    "rotation": 59.42077312863539,
+    "rotation": 0,
     "velocity": 0
   },
   "useDefaultConstraints": true
