@@ -26,6 +26,7 @@ public class Constants {
       public static class ModuleConstants {
         // The max free speed of the module
         public static final double maxSpeed = 4.5;
+        //Lowerd from 4.5
 
         public static double trackWidth = 0.5588;
         public static double wheelBase = 0.4826;

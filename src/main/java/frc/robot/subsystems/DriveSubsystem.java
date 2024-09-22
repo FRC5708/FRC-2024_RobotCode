@@ -116,9 +116,9 @@ public class DriveSubsystem extends SubsystemBase {
       y = Math.pow(y, 3);
       double angle = -MathUtil.applyDeadband(angularRotationX.getAsDouble(), OperatorConstants.driveDeadband);
       angle = Math.pow(angle,3);
-      swerveDrive.drive(new Translation2d(y * swerveDrive.getMaximumVelocity(),
-                        x * swerveDrive.getMaximumVelocity()),
-                        angle * swerveDrive.getMaximumAngularVelocity(),
+      swerveDrive.drive(new Translation2d(y * swerveDrive.getMaximumVelocity()/4,
+                        x * swerveDrive.getMaximumVelocity()/4),
+                        angle * swerveDrive.getMaximumAngularVelocity()/2,
                         true,
                         false);
     });
